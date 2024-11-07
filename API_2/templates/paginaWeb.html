@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat con GPT</title>
+    <script>
+        function enviarPregunta() {
+            // Obtener la pregunta del campo de texto
+            const pregunta = document.getElementById('pregunta').value;
+
+            // Verificar que el campo de texto no esté vacío
+            if (!pregunta.trim()) {
+                document.getElementById('respuesta').textContent = 'Por favor, escribe una pregunta.';
+                return;
+            }
+
+            // Hacer la petición POST al servidor Flask
+            fetch('/preguntar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ mensaje: pregunta }) // Enviar la pregunta como JSON
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Mostrar la respuesta en el div de salida
+                if (data.respuesta) {
+                    document.getElementById('respuesta').textContent = data.respuesta;
+                } else {
+                    document.getElementById('respuesta').textContent = 'Error: ' + data.error;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('respuesta').textContent = 'Error al procesar la solicitud.';
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>Chat con GPT</h1>
+
+    <!-- Campo de entrada para la pregunta -->
+    <input type="text" id="pregunta" placeholder="Escribe tu pregunta aquí" required>
+    <button onclick="enviarPregunta()">Enviar</button>
+
+    <!-- Div donde se mostrará la respuesta -->
+    <div id="respuesta" style="margin-top: 20px; font-weight: bold;"></div>
+</body>
+</html>
