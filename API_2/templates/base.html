@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FILMEO</title>
+</head>
+<body>
+
+    <h1>FILMEO</h1>
+
+    <!-- Barra de navegación -->
+    <nav>
+        <a href="{{ url_for('recomendadas') }}">Recomendaciones</a> |
+        <a href="{{ url_for('todas_peliculas') }}">Todas las Películas</a> |
+        <a href="{{ url_for('que_te_apetece') }}">¿Qué te apetece ver hoy?</a> |
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </nav>
+
+    <!-- Contenido principal -->
+    <div>
+        {% block content %}
+        {% endblock %}
+    </div>
+
+</body>
+</html>
