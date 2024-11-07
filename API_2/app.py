@@ -1,5 +1,5 @@
 import os
-from flask import Flask, jsonify, request, render_template, redirect, url_for
+from flask import Flask, jsonify, request, render_template, redirect, url_for, flash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 import bcrypt
 import openai
@@ -91,7 +91,8 @@ def login():
             login_user(user)
             return redirect(url_for('recomendadas'))
         else:
-            return "Usuario o contraseña incorrectos", 401
+            flash('¡Usuario o contraseña incorrectos! Prueba de nuevo.', 'danger')
+            return redirect(url_for('login'))
 
     return render_template('login.html')
 
@@ -105,13 +106,19 @@ def pagina_registro():
 def registrar():
     username = request.form['username']
     password = request.form['password']
+    confirm_password = request.form['confirm_password']
 
     users = cargar_usuarios()
 
     if username in users:
-        return "El nombre de usuario ya existe", 400
+        flash('El nombre de usuario ya existe. Por favor elige otro.', 'danger')
+        return redirect(url_for('pagina_registro'))
+    elif password != confirm_password:
+        flash('Las contraseñas no coinciden. Por favor, vuelve a intentarlo.', 'danger')
+        return redirect(url_for('pagina_registro'))
     else:
         registrar_usuario(username, password)
+        flash('¡Registro exitoso! Ahora puedes iniciar sesión.', 'success')
         return redirect(url_for('login'))
 
 
@@ -119,6 +126,7 @@ def registrar():
 @login_required
 def logout():
     logout_user()
+    flash('¡Logout exitoso! Ahora puedes volver a iniciar sesión.', 'success')
     return redirect(url_for('login'))
 
 
