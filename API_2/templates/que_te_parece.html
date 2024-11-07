@@ -1,10 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>¿Qué te apetece ver hoy?</h1>
-<form action="{{ url_for('que_te_apetece') }}" method="post">
-    Género: <input type="text" name="genero"><br>
-    Tipo de película: <input type="text" name="tiempo"><br>
-    <input type="submit" value="Obtener recomendaciones">
-</form>
+    <h1>¿Qué te apetece ver hoy?</h1>
+
+    <form action="{{ url_for('que_te_apetece') }}" method="post" class="form-container">
+        <label for="genero">Género:</label>
+        <input type="text" id="genero" name="genero" required>
+
+        <label for="tiempo">¿Qué tipo de película te apetece (por ejemplo, acción, comedia, drama, etc.)?</label>
+        <input type="text" id="tiempo" name="tiempo" required>
+
+        <input type="submit" value="Obtener recomendaciones">
+    </form>
 {% endblock %}
