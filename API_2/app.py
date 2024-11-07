@@ -1,14 +1,13 @@
-import json
 import os
 from flask import Flask, jsonify, request, render_template, redirect, url_for
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 import bcrypt
 import openai
+import json
 
 app = Flask(__name__)
-
-app.secret_key = 'mi_clave_secreta'  # Aqui tenemos que poner un clave secreta
-openai.api_key = ''
+app.secret_key = 'mi_clave_secreta'  # Cambia esto por una clave segura
+openai.api_key = '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'  # Reemplaza por tu clave de OpenAI
 
 # Configuración de flask-login
 login_manager = LoginManager()
@@ -17,7 +16,7 @@ login_manager.login_view = 'login'
 
 USER_FILE = 'usuarios.txt'
 PELICULAS_FILE = 'peliculas.json'
-
+PREFERENCIAS_FILE = 'preferencias_usuarios.json'
 
 
 def cargar_usuarios():
@@ -37,11 +36,32 @@ def registrar_usuario(username, password):
     with open(USER_FILE, 'a') as f:
         f.write(f"{username}:{password_hash.decode()}\n")
 
-# Cargar todas las películas
+
 def cargar_peliculas():
     with open(PELICULAS_FILE, 'r') as f:
         peliculas_data = json.load(f)
     return peliculas_data['peliculas']
+
+
+def cargar_preferencias(usuario):
+    preferencias = {}
+    if os.path.exists(PREFERENCIAS_FILE):
+        with open(PREFERENCIAS_FILE, 'r') as f:
+            preferencias = json.load(f)
+    return preferencias.get(usuario, [])
+
+
+def guardar_preferencias(usuario, preferencias):
+    all_preferencias = {}
+    if os.path.exists(PREFERENCIAS_FILE):
+        with open(PREFERENCIAS_FILE, 'r') as f:
+            all_preferencias = json.load(f)
+
+    all_preferencias[usuario] = preferencias
+
+    with open(PREFERENCIAS_FILE, 'w') as f:
+        json.dump(all_preferencias, f)
+
 
 class User(UserMixin):
     def __init__(self, id):
@@ -53,7 +73,6 @@ def load_user(user_id):
     return User(user_id)
 
 
-# Redirigir a la página de login por defecto
 @app.route('/')
 def home():
     return redirect(url_for('login'))
@@ -70,14 +89,14 @@ def login():
         if username in users and bcrypt.checkpw(password.encode(), users[username]):
             user = User(username)
             login_user(user)
-            return redirect(url_for('index'))
+            return redirect(url_for('recomendadas'))
         else:
             return "Usuario o contraseña incorrectos", 401
 
     return render_template('login.html')
 
 
-@app.route('/pagina_registro')
+@app.route('/pagina_resgistro')
 def pagina_registro():
     return render_template('registrar.html')
 
@@ -103,15 +122,57 @@ def logout():
     return redirect(url_for('login'))
 
 
-@app.route('/index')
+# Página de Recomendaciones
+@app.route('/recomendadas')
 @login_required
-def index():
+def recomendadas():
+    usuario = current_user.id
+    preferencias_anteriores = cargar_preferencias(usuario)
     todas_peliculas = cargar_peliculas()
-    return render_template(
-        'paginaWeb.html',
-        todas_peliculas=todas_peliculas,
-    )
 
+    if preferencias_anteriores:
+        # Llamada a ChatGPT para obtener recomendaciones basadas en las preferencias
+        prompt = f"Eres un recomendador de películas.En base a estas preferencias del usuario: {', '.join(preferencias_anteriores)} elige 15 peliculas que aparezcan ahí: {todas_peliculas} "
+        respuesta = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[{"role": "user", "content": prompt}]
+        )
+        recomendaciones_chatgpt = respuesta['choices'][0]['message']['content'].strip().splitlines()
+    else:
+        recomendaciones_chatgpt = "Aún no te conozco lo suficiente como para recomentarte peliculas"
+
+    return render_template('recomendadas.html', recomendaciones_anteriores=recomendaciones_chatgpt)
+
+
+@app.route('/todas_peliculas')
+@login_required
+def todas_peliculas():
+    todas_peliculas = cargar_peliculas()
+    return render_template('todas_peliculas.html', todas_peliculas=todas_peliculas)
+
+
+@app.route('/que_te_apetece', methods=['GET', 'POST'])
+@login_required
+def que_te_apetece():
+    if request.method == 'POST':
+        genero = request.form.get('genero')
+        tiempo = request.form.get('tiempo')
+
+        preferencias = [genero, tiempo]
+        guardar_preferencias(current_user.id, preferencias)
+
+        todas_peliculas = cargar_peliculas()
+        prompt = f"Eres un recomendador de películas.En base a las preferencias del usuario, elige 10 películas que mejor coincidan con: Género: {genero}. Preferencia de época: {tiempo}. Aquí está la lista de películas disponibles, elige peliculas que aparezcan ahí: {todas_peliculas}"
+
+        respuesta = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[{"role": "user", "content": prompt}]
+        )
+        recomendaciones_chatgpt = respuesta['choices'][0]['message']['content'].strip().splitlines()
+
+        return render_template('recomendadas.html', recomendaciones_anteriores=recomendaciones_chatgpt)
+
+    return render_template('que_te_apetece.html')
 
 
 if __name__ == '__main__':
