@@ -4,21 +4,96 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FILMEO</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Barra de navegación */
+        .navbar {
+            background-color: #333;
+            padding: 10px 0;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .navbar a:hover {
+            background-color: #575757;
+        }
+
+        .navbar .right {
+            float: right;
+        }
+
+        /* Contenido principal */
+        .content {
+            margin-top: 60px;
+            padding: 20px;
+        }
+
+        .form-container {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        .form-container label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .form-container input[type="text"], .form-container input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .movie-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .movie-list li {
+            padding: 10px;
+            background-color: #f0f0f0;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
 
-    <h1>FILMEO</h1>
-
     <!-- Barra de navegación -->
-    <nav>
-        <a href="{{ url_for('recomendadas') }}">Recomendaciones</a> |
-        <a href="{{ url_for('todas_peliculas') }}">Todas las Películas</a> |
-        <a href="{{ url_for('que_te_apetece') }}">¿Qué te apetece ver hoy?</a> |
-        <a href="{{ url_for('logout') }}">Logout</a>
-    </nav>
+    <div class="navbar">
+        <span style="font-size: 24px; color: white; margin-right: 20px;">FILMEO</span>
+        <a href="{{ url_for('recomendadas') }}">Recomendaciones</a>
+        <a href="{{ url_for('todas_peliculas') }}">Todas las Películas</a>
+        <a href="{{ url_for('que_te_apetece') }}">¿Qué te apetece ver hoy?</a>
+        <a href="{{ url_for('logout') }}" class="right">Logout</a>  <!-- Aquí se agrega el botón de logout -->
+    </div>
 
-    <!-- Contenido principal -->
-    <div>
+    <!-- Contenido -->
+    <div class="content">
         {% block content %}
         {% endblock %}
     </div>
