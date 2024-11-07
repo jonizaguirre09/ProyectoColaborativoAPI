@@ -1,3 +1,4 @@
+import json
 import os
 from flask import Flask, jsonify, request, render_template, redirect, url_for
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
@@ -15,6 +16,8 @@ login_manager.init_app(app)
 login_manager.login_view = 'login'
 
 USER_FILE = 'usuarios.txt'
+PELICULAS_FILE = 'peliculas.json'
+
 
 
 def cargar_usuarios():
@@ -34,6 +37,11 @@ def registrar_usuario(username, password):
     with open(USER_FILE, 'a') as f:
         f.write(f"{username}:{password_hash.decode()}\n")
 
+# Cargar todas las películas
+def cargar_peliculas():
+    with open(PELICULAS_FILE, 'r') as f:
+        peliculas_data = json.load(f)
+    return peliculas_data['peliculas']
 
 class User(UserMixin):
     def __init__(self, id):
@@ -98,27 +106,12 @@ def logout():
 @app.route('/index')
 @login_required
 def index():
-    return render_template('paginaWeb.html')
+    todas_peliculas = cargar_peliculas()
+    return render_template(
+        'paginaWeb.html',
+        todas_peliculas=todas_peliculas,
+    )
 
-
-@app.route('/preguntar', methods=['POST'])
-@login_required
-def preguntar():
-    data = request.json
-    pregunta = data.get('mensaje')
-
-    if pregunta:
-        try:
-            respuesta = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
-                messages=[{"role": "user", "content": pregunta}]
-            )
-            respuesta_texto = respuesta['choices'][0]['message']['content'].strip()
-            return jsonify({'respuesta': respuesta_texto})
-        except Exception as e:
-            return jsonify({'error': str(e)}), 500
-    else:
-        return jsonify({'error': 'No se hizo ninguna pregunta!'}), 400
 
 
 if __name__ == '__main__':
