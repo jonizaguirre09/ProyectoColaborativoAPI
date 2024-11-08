@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Todas las Películas</h1>
-<ul>
-    {% for pelicula in todas_peliculas %}
-        <li>{{ pelicula }}</li>
-    {% endfor %}
-</ul>
+    <h1>Todas las Películas</h1>
+    <ul class="movie-list">
+        {% for pelicula in todas_peliculas %}
+            <li>{{ pelicula }}</li>
+        {% endfor %}
+    </ul>
 {% endblock %}
