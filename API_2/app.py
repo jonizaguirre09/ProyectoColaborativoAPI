@@ -180,7 +180,7 @@ def que_te_apetece():
 
         return render_template('recomendadas.html', recomendaciones_anteriores=recomendaciones_chatgpt)
 
-    return render_template('que_te_parece.html')
+    return render_template('que_te_apetece.html')
 
 
 if __name__ == '__main__':
