@@ -9,6 +9,7 @@ Este proyecto es una aplicación web que permite a los usuarios obtener recomend
 - [Rutas Principales](#rutas-principales)
 - [Contribuciones](#contribuciones)
 
+
 ## Instalación
 
 1. **Clona el repositorio** desde GitHub:
@@ -61,10 +62,32 @@ Este proyecto es una aplicación web que permite a los usuarios obtener recomend
 4. **Recomendaciones**:
    Después de realizar la primera búsqueda en el apartado '¿Que te apetece ver hoy?' saldrá una lista de películas recomendadas teniendo en cuenta los campos rellenados.
 
+
 ## Rutas Principales
 
 1. **GET /**:
    Página principal de la aplicación.
-2. **GET /login**:
 
-3. **GET /registrar**:
+2. **GET /login**:
+   Muestra el campo de iniciar sesión (usuario y contraseña).
+
+3. **POST /login**:
+   Procesa los datos de inicio de sesión.
+
+4. **GET /registrar**:
+   Muestra el campo de registrarse (usuario, contraseña y confirmar contraseña).
+
+5. **POST /registrar**:
+   Procesa los datos de registro de usuario.
+
+6. **POST /logout**:
+   Cierra sesión del usuario.
+
+7. **POST /recomendadas**:
+   Genera recomendaciones de películas basadas en las preferencias del usuario.
+
+8. **POST /todas_peliculas**:
+   Muestra la lista de todas las películas.
+
+9. **POST /que_te_apetece**:
+   Mediante un breve formulario podrás obtener 10 películas basadas en las características elegidas.
