@@ -2,7 +2,21 @@
 
 {% block content %}
     <h1>Todas las Películas</h1>
-    <ul class="movie-list">
+
+    <!-- Buscador -->
+    <div class="form-container">
+        <label for="search">Buscar película:</label>
+        <input type="text" id="search" placeholder="Escribe el título de la película...">
+    </div>
+
+    <!-- Botones para ordenar -->
+    <div class="form-container" style="display: flex; gap: 10px; justify-content: center; margin-bottom: 20px;">
+        <button onclick="sortMovies('az')">Ordenar A-Z</button>
+        <button onclick="sortMovies('za')">Ordenar Z-A</button>
+    </div>
+
+    <!-- Listado de películas -->
+    <ul class="movie-list" id="movie-list">
         {% for pelicula in todas_peliculas %}
             <li>
                 <a href="#" onclick="obtenerDetalles('{{ pelicula }}')" style="color: black; text-decoration: none;">
@@ -11,7 +25,37 @@
             </li>
         {% endfor %}
     </ul>
+    
+    <!-- Script para buscar y ordenar las películas -->
+    <script>
+        // Selección del campo de búsqueda y lista de películas
+        const searchInput = document.getElementById('search');
+        const movieList = document.getElementById('movie-list');
+        let movies = Array.from(movieList.getElementsByTagName('li'));
 
+        // Filtro de búsqueda
+        searchInput.addEventListener('input', function() {
+            const filter = searchInput.value.toLowerCase();
+            movies.forEach(movie => {
+                const movieTitle = movie.textContent.toLowerCase();
+                movie.style.display = movieTitle.includes(filter) ? "" : "none";
+            });
+        });
+
+        // Función para ordenar las películas
+        function sortMovies(order) {
+            // Ordenamiento alfabético (A-Z y Z-A)
+            if (order === 'az') {
+                movies.sort((a, b) => a.textContent.localeCompare(b.textContent));
+            } else if (order === 'za') {
+                movies.sort((a, b) => b.textContent.localeCompare(a.textContent));
+            }
+
+            // Vuelve a agregar las películas en el nuevo orden
+            movies.forEach(movie => movieList.appendChild(movie));
+        }
+    </script>
+    
     <!-- Modal para mostrar detalles de la película -->
     <div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); color:white; padding:40px;">
         <div style="background:#333; padding:20px; border-radius:10px; max-width:500px; margin:auto;">
@@ -21,6 +65,7 @@
         </div>
     </div>
 
+    <!-- Script para mostrar detalles de la película -->
     <script>
         function obtenerDetalles(pelicula) {
             fetch(`/detalles_pelicula?nombre=${encodeURIComponent(pelicula)}`)
