@@ -7,7 +7,7 @@ import json
 
 app = Flask(__name__)
 app.secret_key = 'adkfnasñldkfñlavsjdñfljadbsklfjavjdsfskldjf'  # Cambia esto por una clave segura
-openai.api_key = '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'  # Reemplaza por tu clave de OpenAI
+openai.api_key = ''  # Reemplaza por tu clave de OpenAI
 
 # Configuración de flask-login
 login_manager = LoginManager()
