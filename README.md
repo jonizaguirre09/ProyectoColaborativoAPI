@@ -7,7 +7,6 @@ Este proyecto es una aplicación web que permite a los usuarios obtener recomend
 - [Uso](#uso)
 - [Características](#características)
 - [Rutas Principales](#rutas-principales)
-- [Contribuciones](#contribuciones)
 
 
 ## Instalación
