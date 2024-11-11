@@ -164,21 +164,24 @@ def todas_peliculas():
 def que_te_apetece():
     if request.method == 'POST':
         genero = request.form.get('genero')
-        tiempo = request.form.get('tiempo')
+        tipoDePelicula = request.form.get('tipo')
+        actoresPreferidos = request.form.get('actores')
+        duracion = request.form.get('duracion')
+        idioma = request.form.get('idioma')
 
-        preferencias = [genero, tiempo]
+        preferencias = [genero, tipoDePelicula, actoresPreferidos, duracion, idioma]
         guardar_preferencias(current_user.id, preferencias)
 
         todas_peliculas = cargar_peliculas()
-        prompt = f"Eres un recomendador de películas.En base a las preferencias del usuario, elige 10 películas que mejor coincidan con: Género: {genero}. Preferencia de época: {tiempo}. Aquí está la lista de películas disponibles, elige peliculas que aparezcan ahí: {todas_peliculas}"
-
+        prompt = f"Eres un recomendador de películas.En base a las preferencias del usuario, elige 10 películas que mejor coincidan con: Género: {genero}. Tipo de película: {tipoDePelicula}. Duración de la película: {duracion}. Actores preferidos: {actoresPreferidos}. Idioma de la película: {idioma} Aquí está la lista de películas disponibles, elige peliculas que aparezcan ahí: {todas_peliculas}"
+        print(prompt)
         respuesta = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=[{"role": "user", "content": prompt}]
         )
         recomendaciones_chatgpt = respuesta['choices'][0]['message']['content'].strip().splitlines()
 
-        return render_template('recomendadas.html', recomendaciones_anteriores=recomendaciones_chatgpt)
+        return render_template('recomendadas1.html', recomendaciones_anteriores=recomendaciones_chatgpt)
 
     return render_template('que_te_apetece.html')
 
