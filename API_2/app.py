@@ -6,8 +6,8 @@ import openai
 import json
 
 app = Flask(__name__)
-app.secret_key = 'mi_clave_secreta'  # Cambia esto por una clave segura
-openai.api_key = ''  # Reemplaza por tu clave de OpenAI
+app.secret_key = 'adkfnasñldkfñlavsjdñfljadbsklfjavjdsfskldjf'  # Cambia esto por una clave segura
+openai.api_key = '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'  # Reemplaza por tu clave de OpenAI
 
 # Configuración de flask-login
 login_manager = LoginManager()
@@ -181,6 +181,22 @@ def que_te_apetece():
         return render_template('recomendadas.html', recomendaciones_anteriores=recomendaciones_chatgpt)
 
     return render_template('que_te_apetece.html')
+
+
+@app.route('/detalles_pelicula')
+@login_required
+def detalles_pelicula():
+    nombre_pelicula = request.args.get('nombre')
+    prompt = f"Dame los actores y una breve sinopsis de la película '{nombre_pelicula}'."
+
+    respuesta = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[{"role": "user", "content": prompt}]
+    )
+
+    detalles = respuesta['choices'][0]['message']['content'].strip()
+
+    return jsonify({'detalles': detalles})
 
 
 if __name__ == '__main__':
