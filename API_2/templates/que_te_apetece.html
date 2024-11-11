@@ -1,15 +1,136 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>¿Qué te apetece ver hoy?</h1>
+    <div class="recommendation-container">
+        <h1>¿Qué Película Te Apetece Ver Hoy? 🎥</h1>
+        <p>Indícanos tus preferencias para que te recomendemos una película perfecta para tu estado de ánimo.</p>
 
-    <form action="{{ url_for('que_te_apetece') }}" method="post" class="form-container">
-        <label for="genero">Género:</label>
-        <input type="text" id="genero" name="genero" required>
+        <form action="{{ url_for('que_te_apetece') }}" method="post" class="form-container">
+            <div class="form-group">
+                <label for="genero">Género:</label>
+                <input type="text" id="genero" name="genero" placeholder="Ej: Ciencia ficción, Comedia, Drama" required>
+            </div>
 
-        <label for="tiempo">¿Qué tipo de película te apetece (por ejemplo, acción, comedia, drama, etc.)?</label>
-        <input type="text" id="tiempo" name="tiempo" required>
+            <div class="form-group">
+                <label for="tipo">Tipo de Película:</label>
+                <input type="text" id="tipo" name="tipo" placeholder="Ej: Divertida, Intensa, Familiar" required>
+            </div>
 
-        <input type="submit" value="Obtener recomendaciones">
-    </form>
+            <div class="form-group">
+                <label for="actores">Actores Preferidos:</label>
+                <input type="text" id="actores" name="actores" placeholder="Ej: Leonardo DiCaprio, Scarlett Johansson">
+                <small>Puedes escribir varios actores, separados por comas.</small>
+            </div>
+
+            <div class="form-group">
+                <label for="duracion">Duración Preferida:</label>
+                <input type="text" id="duracion" name="duracion" placeholder="Ej: Menos de 90 min, 90-120 min, más de 120 min">
+            </div>
+
+            <div class="form-group">
+                <label for="idioma">Idioma:</label>
+                <input type="text" id="idioma" name="idioma" placeholder="Ej: Español, Inglés, Francés">
+            </div>
+
+            <button type="submit" class="btn-submit">🎬 Obtener Recomendación</button>
+        </form>
+    </div>
+
+    <style>
+        /* Container styles */
+        .recommendation-container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Title and description */
+        .recommendation-container h1 {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .recommendation-container p {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        /* Form styles */
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-group {
+            text-align: left;
+        }
+
+        label {
+            font-weight: bold;
+            color: #444;
+            margin-bottom: 5px;
+            display: inline-block;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            background-color: #f9f9f9;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        small {
+            font-size: 0.9em;
+            color: #777;
+        }
+
+        /* Button styles */
+        .btn-submit {
+            background-color: #007bff;
+            color: #fff;
+            padding: 12px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #0056b3;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .recommendation-container {
+                padding: 15px;
+            }
+            .recommendation-container h1 {
+                font-size: 1.8em;
+            }
+            .recommendation-container p {
+                font-size: 1em;
+            }
+            .btn-submit {
+                font-size: 1em;
+            }
+        }
+    </style>
 {% endblock %}
