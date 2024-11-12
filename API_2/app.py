@@ -7,7 +7,7 @@ import json
 
 app = Flask(__name__)
 app.secret_key = 'adkfnasñldkfñlavsjdñfljadbsklfjavjdsfskldjf'  # Cambia esto por una clave segura
-openai.api_key = ''  # Reemplaza por tu clave de OpenAI
+openai.api_key = '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'  # Reemplaza por tu clave de OpenAI
 
 # Configuración de flask-login
 login_manager = LoginManager()
@@ -146,14 +146,15 @@ def recomendadas():
 
     if preferencias_anteriores:
         # Llamada a ChatGPT para obtener recomendaciones basadas en las preferencias
-        prompt = f"Eres un recomendador de películas.En base a estas preferencias del usuario: {', '.join(preferencias_anteriores)}  elige SIEMPRE 15 peliculas que aparezcan ahí: {todas_peliculas}"
+        prompt = f"Eres un recomendador de películas. En base a estas preferencias del usuario: {', '.join(preferencias_anteriores)}  elige SIEMPRE 15 películas que aparezcan ahí: {todas_peliculas}"
         respuesta = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
+            model="gpt-3.5-turbo",  # Cambia a gpt-4 si lo prefieres
             messages=[{"role": "user", "content": prompt}]
         )
         recomendaciones_chatgpt = respuesta['choices'][0]['message']['content'].strip().splitlines()
     else:
-        recomendaciones_chatgpt = "Aún no te conozco lo suficiente como para recomentarte peliculas"
+        # Aquí pasas un mensaje en texto plano si no hay preferencias
+        recomendaciones_chatgpt = "Aún no te conozco lo suficiente como para recomendarte películas."
 
     return render_template('recomendadas.html', recomendaciones_anteriores=recomendaciones_chatgpt)
 
@@ -165,17 +166,17 @@ def obtener_recomendaciones_adicionales():
     preferencias_anteriores = cargar_preferencias(usuario)
     todas_canciones = cargar_titulo_peliculas()
 
-    # Generar el texto con OpenAI
-    prompt = f"Genera un texto de recomendación en lenguaje natural recomendando algunas peliculas basadas en las preferencias del usuario: {', '.join(preferencias_anteriores)}. No incluyas ninguna de las siguientes peliculas: {', '.join(todas_canciones)}. El texto debe ser ameno y natural, y al menos me debes recomendar 3 peliculas. Y que la respuesta debe ceñirse unicamente a recomendarme esas peliculas adicionales."
+    if preferencias_anteriores:
+        prompt = f"Genera un texto de recomendación en lenguaje natural recomendando algunas peliculas basadas en las preferencias del usuario: {', '.join(preferencias_anteriores)}. No incluyas ninguna de las siguientes peliculas: {', '.join(todas_canciones)}. El texto debe ser ameno y natural, y al menos me debes recomendar 3 peliculas. Y que la respuesta debe ceñirse unicamente a recomendarme esas peliculas adicionales."
 
-    respuesta = openai.ChatCompletion.create(
-        model="gpt-4",
-        messages=[{"role": "user", "content": prompt}]
-    )
+        respuesta = openai.ChatCompletion.create(
+            model="gpt-4",
+            messages=[{"role": "user", "content": prompt}]
+        )
 
-    recomendaciones_texto = respuesta['choices'][0]['message']['content'].strip()
-
-    # Devolver las recomendaciones como un JSON
+        recomendaciones_texto = respuesta['choices'][0]['message']['content'].strip()
+    else:
+        recomendaciones_texto = None
     return jsonify(recomendaciones_adicionales=recomendaciones_texto)
 
 
