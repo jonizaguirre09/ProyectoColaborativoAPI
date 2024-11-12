@@ -23,12 +23,10 @@
     {% endif %}
 
     <!-- Mostrar el texto generado por ChatGPT (Recomendaciones adicionales) -->
-    {% if recomendaciones_adicionales %}
-        <div class="recommendation-container" id="recomendaciones-adicionales-container">
-            <h2>A lo mejor te puede interesar...</h2>
-            <p id="recomendaciones-adicionales">{{ recomendaciones_adicionales }}</p>
-        </div>
-    {% endif %}
+    <div class="recommendation-container {% if recomendaciones_anteriores is string %}no-recommendations{% endif %}" id="recomendaciones-adicionales-container">
+        <h2>A lo mejor te puede interesar...</h2>
+        <p id="recomendaciones-adicionales">Cargando recomendaciones adicionales...</p>
+    </div>
 
     <!-- Modal para mostrar detalles de la película -->
     <div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); color:white; padding:40px;">
@@ -80,7 +78,7 @@
         /* Container styles */
         .recommendation-container {
             max-width: 600px;
-            margin: 40px auto;
+            margin: 20px auto;  /* Centramos el contenedor de manera flexible */
             padding: 20px;
             background-color: #ffffff;
             border-radius: 12px;
@@ -90,8 +88,8 @@
         }
 
         /* Title and description */
-        .recommendation-container h1 {
-            font-size: 2em;
+        .recommendation-container h2 {
+            font-size: 1.5em;
             color: #333;
             margin-bottom: 10px;
         }
@@ -100,6 +98,22 @@
             font-size: 1.1em;
             color: #666;
             margin-bottom: 20px;
+        }
+
+
+        .recommendation-container.no-recommendations {
+            background-color: #f0f0f0;
+            text-align: center;
+            margin-top: -450px;
+        }
+
+
+        .recommendation-container.no-recommendations h2 {
+            color: #888;  
+        }
+
+        .recommendation-container.no-recommendations p {
+            color: #888;  
         }
 
         /* Movie list styles */
@@ -135,19 +149,20 @@
             margin: auto;
         }
 
+        /* Centered message style */
         .center-message {
             display: flex;
             justify-content: center;
-            align-items: flex-start;
-            height: 80vh;
+            align-items: flex-start; /* Mover el contenido un poco más arriba */
+            height: 80vh; /* Reduce la altura del contenedor para que no ocupe toda la pantalla */
             text-align: center;
-            font-size: 1.2em;
-            color: #333;
-            margin-top: 0vh;
+            font-size: 1.2em; /* Reducción del tamaño del texto */
+            color: #333; /* Color del texto */
+            margin-top: 0vh; /* Mueve el contenido hacia abajo, pero aún centrado verticalmente */
         }
 
         .center-message p {
-            margin: 0;
+            margin: 0; /* Elimina márgenes alrededor del párrafo */
         }
     </style>
 {% endblock %}
