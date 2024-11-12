@@ -146,7 +146,7 @@ def recomendadas():
 
     if preferencias_anteriores:
         # Llamada a ChatGPT para obtener recomendaciones basadas en las preferencias
-        prompt = f"Eres un recomendador de películas. En base a estas preferencias del usuario: {', '.join(preferencias_anteriores)}  elige SIEMPRE 15 películas que aparezcan ahí: {todas_peliculas}"
+        prompt = f"Eres un recomendador de películas. En base a estas preferencias del usuario: {', '.join(preferencias_anteriores)}  elige SIEMPRE 15 películas DIFERENTES que aparezcan ahí: {todas_peliculas}"
         respuesta = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",  # Cambia a gpt-4 si lo prefieres
             messages=[{"role": "user", "content": prompt}]
@@ -167,7 +167,7 @@ def obtener_recomendaciones_adicionales():
     todas_canciones = cargar_titulo_peliculas()
 
     if preferencias_anteriores:
-        prompt = f"Genera un texto de recomendación en lenguaje natural recomendando algunas peliculas basadas en las preferencias del usuario: {', '.join(preferencias_anteriores)}. No incluyas ninguna de las siguientes peliculas: {', '.join(todas_canciones)}. El texto debe ser ameno y natural, y al menos me debes recomendar 3 peliculas. Y que la respuesta debe ceñirse unicamente a recomendarme esas peliculas adicionales."
+        prompt = f"Genera un texto de recomendación en lenguaje natural recomendando algunas peliculas basadas en las preferencias del usuario: {', '.join(preferencias_anteriores)}. No incluyas ninguna de las siguientes peliculas: {', '.join(todas_canciones)}. El texto debe ser ameno y natural, y al menos me debes recomendar 3 peliculas. Y debes ser consciente de que el texto comienza con -çY a lo mejor te puede interesar...-. Para que tengas en cuenta que tu texto tiene que tener cohesion con esa frase. Pero tu respuesta no debe empezar con Y a lo mejor te puede interesar, porque eso ya esta escrito.."
 
         respuesta = openai.ChatCompletion.create(
             model="gpt-4",
@@ -202,7 +202,7 @@ def que_te_apetece():
         guardar_preferencias(current_user.id, preferencias)
 
         todas_peliculas = cargar_titulo_peliculas()
-        prompt = f"Eres un recomendador de películas.En base a las preferencias del usuario, elige SIEMPRE 10 películas que mejor coincidan con: Género: {genero}. Tipo de película: {tipoDePelicula}. Duración de la película: {duracion}. Actores preferidos: {actoresPreferidos}. Idioma de la película: {idioma} Aquí está la lista de películas disponibles, elige peliculas que aparezcan ahí: {todas_peliculas}"
+        prompt = f"Eres un recomendador de películas.En base a las preferencias del usuario, elige SIEMPRE 10 películas DIFERENTES que mejor coincidan con: Género: {genero}. Tipo de película: {tipoDePelicula}. Duración de la película: {duracion}. Actores preferidos: {actoresPreferidos}. Idioma de la película: {idioma} Aquí está la lista de películas disponibles, elige peliculas que aparezcan ahí: {todas_peliculas}"
         print(prompt)
         respuesta = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
