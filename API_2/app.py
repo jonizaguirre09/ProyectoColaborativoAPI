@@ -42,6 +42,12 @@ def cargar_peliculas():
         peliculas_data = json.load(f)
     return peliculas_data['peliculas']
 
+def cargar_titulo_peliculas():
+    with open(PELICULAS_FILE, 'r') as f:
+        peliculas_data = json.load(f)
+    peliculas_titulos = [pelicula['titulo'] for pelicula in peliculas_data['peliculas']]
+    return peliculas_titulos
+
 
 def cargar_preferencias(usuario):
     preferencias = {}
@@ -136,11 +142,11 @@ def logout():
 def recomendadas():
     usuario = current_user.id
     preferencias_anteriores = cargar_preferencias(usuario)
-    todas_peliculas = cargar_peliculas()
+    todas_peliculas = cargar_titulo_peliculas()
 
     if preferencias_anteriores:
         # Llamada a ChatGPT para obtener recomendaciones basadas en las preferencias
-        prompt = f"Eres un recomendador de películas.En base a estas preferencias del usuario: {', '.join(preferencias_anteriores)} elige 15 peliculas que aparezcan ahí: {todas_peliculas} "
+        prompt = f"Eres un recomendador de películas.En base a estas preferencias del usuario: {', '.join(preferencias_anteriores)}  elige SIEMPRE 15 peliculas que aparezcan ahí: {todas_peliculas}"
         respuesta = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=[{"role": "user", "content": prompt}]
@@ -150,6 +156,7 @@ def recomendadas():
         recomendaciones_chatgpt = "Aún no te conozco lo suficiente como para recomentarte peliculas"
 
     return render_template('recomendadas.html', recomendaciones_anteriores=recomendaciones_chatgpt)
+
 
 
 @app.route('/todas_peliculas')
@@ -172,8 +179,8 @@ def que_te_apetece():
         preferencias = [genero, tipoDePelicula, actoresPreferidos, duracion, idioma]
         guardar_preferencias(current_user.id, preferencias)
 
-        todas_peliculas = cargar_peliculas()
-        prompt = f"Eres un recomendador de películas.En base a las preferencias del usuario, elige 10 películas que mejor coincidan con: Género: {genero}. Tipo de película: {tipoDePelicula}. Duración de la película: {duracion}. Actores preferidos: {actoresPreferidos}. Idioma de la película: {idioma} Aquí está la lista de películas disponibles, elige peliculas que aparezcan ahí: {todas_peliculas}"
+        todas_peliculas = cargar_titulo_peliculas()
+        prompt = f"Eres un recomendador de películas.En base a las preferencias del usuario, elige SIEMPRE 10 películas que mejor coincidan con: Género: {genero}. Tipo de película: {tipoDePelicula}. Duración de la película: {duracion}. Actores preferidos: {actoresPreferidos}. Idioma de la película: {idioma} Aquí está la lista de películas disponibles, elige peliculas que aparezcan ahí: {todas_peliculas}"
         print(prompt)
         respuesta = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
