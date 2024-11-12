@@ -237,21 +237,170 @@
       "anio_estreno": 2012
     },
     {
-      "titulo": "First Blood",
+      "titulo": "Acorralado",
+      "anio_estreno": 1982
+    },
+    {
+      "titulo": "En busca del arca perdida",
+      "anio_estreno": 1981
+    },
+    {
+      "titulo": "La Comunidad del Anillo",
+      "anio_estreno": 2001
+    },
+
+    {
+      "titulo": "Harry Potter y la piedra filosofal",
+      "anio_estreno": 2001
+    },
+    {
+      "titulo": "Harry Potter y la cámara secreta",
+      "anio_estreno": 2002
+    },
+    {
+      "titulo": "Harry Potter y el prisionero de Azkaban",
+      "anio_estreno": 2004
+    },
+    {
+      "titulo": "Harry Potter y el caliz de fuego",
+      "anio_estreno": 2005
+    },    
+    {
+      "titulo": "Harry Potter y la Orden del Fénix",
+      "anio_estreno": 2007
+    },
+    {
+      "titulo": "Harry Potter y el misterio del príncipe",
+      "anio_estreno": 2009
+    },
+    {
+      "titulo": "Harry Potter y las reliquia de la Muerte (parte 1)",
+      "anio_estreno": 2010
+    },
+    {
+      "titulo": "Harry Potter y las reliquias de la Muerte (parte 2)",
+      "anio_estreno": 2011
+    },    
+    {
+      "titulo": "Piratas del Caribe: La maldición de la Perla Negra",
+      "anio_estreno": 2003
+    },    
+
+    {
+      "titulo": "Parque Jurásico",
+      "anio_estreno": 1993
+    },
+
+    {
+      "titulo": "Avatar",
+      "anio_estreno": 2009
+    },    
+
+    {
+      "titulo": "La isla de Nim",
+      "anio_estreno": 2008
+    },   
+
+    {
+      "titulo": "Los Goonies",
+      "anio_estreno": 1985
+    },
+
+    {
+      "titulo": "King Kong",
+      "anio_estreno": 2005
+    },
+
+    {
+      "titulo": "El león, la bruja y el armario",
+      "anio_estreno": 2005
+    },
+
+    {
+      "titulo": "Jumanji",
+      "anio_estreno": 1995
+    },   
+
+    {
+      "titulo": "La momia",
       "anio_estreno": 19
     },
+
+    {
+      "titulo": "La momia",
+      "anio_estreno": 1999
+    },
+
+    {
+      "titulo": "El libro de la selva",
+      "anio_estreno": 1967
+    },
+
+    {
+      "titulo": "El planeta de los simios",
+      "anio_estreno": 1968
+    },    
+
+    {
+      "titulo": "Robin Hood: príncipe de los ladrones",
+      "anio_estreno": 1991
+    },    
     {
       "titulo": "La Vida es Bella",
       "anio_estreno": 1997
     },
     {
-      "titulo": "Indiana Jones y los Cazadores del Arca Perdida",
-      "anio_estreno": 1981
-    },
-    {
       "titulo": "Seven",
       "anio_estreno": 1995
     },
+    {
+      "titulo": "Zodiac",
+      "anio_estreno": 2007
+    },
+    {
+      "titulo": "Shutter Island",
+      "anio_estreno": 2010
+    },
+    {
+      "titulo": "Prisioneros",
+      "anio_estreno": 2013
+    },
+    {
+      "titulo": "El sexto sentido",
+      "anio_estreno": 1999
+    },
+    {
+      "titulo": "Memento",
+      "anio_estreno": 2000
+    },
+    {
+      "titulo": "Perdida",
+      "anio_estreno": 2014
+    },
+    {
+      "titulo": "La ventana indiscreta",
+      "anio_estreno": 1954
+    },
+    {
+      "titulo": "Oldboy",
+      "anio_estreno": 2003
+    },
+    {
+      "titulo": "En la boca del miedo",
+      "anio_estreno": 1994
+    },
+    {
+      "titulo": "Tiburón",
+      "anio_estreno": 1975
+    },
+    {
+      "titulo": "Los otros",
+      "anio_estreno": 2001
+    },
+    {
+      "titulo": "Vértigo",
+      "anio_estreno": 1958
+    },    
     {
       "titulo": "2001: Odisea en el Espacio",
       "anio_estreno": 1968
@@ -265,6 +414,30 @@
       "anio_estreno": 2001
     },
     {
+      "titulo": "El Señor de los Anillos: Las dos torres",
+      "anio_estreno": 2002
+    },    
+    {
+      "titulo": "El Señor de los Anillos: El retorno del rey",
+      "anio_estreno": 2003
+    },
+    {
+      "titulo": "El Hobbit: Un viaje inesperado",
+      "anio_estreno": 2012
+    },
+    {
+      "titulo": "El Hobbit: La desolación de Smaug",
+      "anio_estreno": 2013
+    },
+    {
+      "titulo": "El Hobbit: La batalla de los cinco ejércitos",
+      "anio_estreno": 2014
+    },    
+    {
+      "titulo": "El Señor de los Anillos: Los Anillos del Poder",
+      "anio_estreno": 2022
+    },    
+    {
       "titulo": "Won’t You Be My Neighbor?",
       "anio_estreno": 2018
     },
@@ -273,13 +446,65 @@
       "anio_estreno": 1995
     },
     {
+      "titulo": "Toy Story 2",
+      "anio_estreno": 1999
+    },
+    {
+      "titulo": "Toy Story 3",
+      "anio_estreno": 2010
+    },
+    {
+      "titulo": "Toy Story 4",
+      "anio_estreno": 2019
+    }, 
+    {
+      "titulo": "Lightyear",
+      "anio_estreno": 2022
+    },   
+    {
+      "titulo": "El Rey León",
+      "anio_estreno": 1994
+    },    
+    {
       "titulo": "El Rey León (Live Action)",
       "anio_estreno": 2019
     },
     {
+      "titulo": "Spider-Man",
+      "anio_estreno": 2002
+    },    
+    {
+      "titulo": "Spider-Man 2",
+      "anio_estreno": 2004
+    },    
+    {
+      "titulo": "Spider-Man 3",
+      "anio_estreno": 2007
+    },    
+    {
+      "titulo": "The Amazing Spider-Man",
+      "anio_estreno": 2012
+    },    
+    {
+      "titulo": "The Amazing Spider-Man 2",
+      "anio_estreno": 2014
+    },    
+    {
+      "titulo": "Spider-Man: Homecoming",
+      "anio_estreno": 2017
+    },    
+    {
       "titulo": "Spider-Man: Un Nuevo Universo",
       "anio_estreno": 2018
     },
+    {
+      "titulo": "Spider-Man: Far From Home",
+      "anio_estreno": 2019
+    },    
+    {
+      "titulo": "Spider-Man: No Way Home",
+      "anio_estreno": 2021
+    },    
     {
       "titulo": "El Gabinete del Dr. Caligari",
       "anio_estreno": 1920
@@ -304,5 +529,29 @@
       "titulo": "El Tercer Hombre",
       "anio_estreno": 1949
     }
+    {
+      "titulo": "El Gato con Botas",
+      "anio_estreno": 2011
+    },
+    {
+      "titulo": "Shrek",
+      "anio_estreno": 2001
+    },
+    {
+      "titulo": "Shrek 2",
+      "anio_estreno": 2004
+    },    
+    {
+      "titulo": "Shrek 3",
+      "anio_estreno": 2007
+    },    
+    {
+      "titulo": "El Gato con Botas: Los tres diablos",
+      "anio_estreno": 2011
+    },  
+    {
+      "titulo": "El Gato con Botas: Atrapado en un cuento épico",
+      "anio_estreno": 2017
+    },    
   ]
 }
