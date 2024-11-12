@@ -10,21 +10,27 @@
     </div>
 
     <!-- Botones para ordenar -->
-    <div class="form-container" style="display: flex; gap: 10px; justify-content: center; margin-bottom: 20px;">
-        <button onclick="sortMovies('az')">Ordenar A-Z</button>
-        <button onclick="sortMovies('za')">Ordenar Z-A</button>
-        <button onclick="sortMovies('anio')">Ordenar por Año de Estreno</button>
+    <div class="form-container" style="text-align: center; margin-bottom: 20px;">
+        <!-- Título "Ordenar por" en una línea superior -->
+        <div class="ordenar-titulo" style="margin-bottom: 10px;">
+            <label>Ordenar por:</label>
+        </div>
+     <!-- Botones que ordenan por orden alfabético y por año de estreno -->
+        <div class="botones" style="display: flex; gap: 10px; justify-content: center;">
+            <button onclick="sortMovies('az')">Título ascendente</button>
+            <button onclick="sortMovies('za')">Título descendente</button>
+            <button onclick="sortMovies('oldest')">Fecha de estreno ascendente</button>
+            <button onclick="sortMovies('newest')">Fecha de estreno descendente</button>
+        </div>
     </div>
 
     <!-- Listado de películas -->
     <ul class="movie-list" id="movie-list">
         {% for pelicula in todas_peliculas %}
-            <li>
+            <li data-anio="{{ pelicula['anio_estreno'] }}">
                 <a href="#" onclick="obtenerDetalles('{{ pelicula['titulo'] }}')" style="color: black; text-decoration: none;">
-                    {{ pelicula['titulo'] }}
+                    {{ pelicula['titulo']}}
                 </a>
-                <!-- Año de estreno en un campo oculto -->
-                <span class="anio-estreno" style="display: none;">{{ pelicula['anio_estreno'] }}</span>
             </li>
         {% endfor %}
     </ul>
@@ -52,13 +58,10 @@
                 movies.sort((a, b) => a.querySelector('a').textContent.localeCompare(b.querySelector('a').textContent));
             } else if (order === 'za') {
                 movies.sort((a, b) => b.querySelector('a').textContent.localeCompare(a.querySelector('a').textContent));
-            } else if (order === 'anio') {
-                // Ordenamiento por año de estreno
-                movies.sort((a, b) => {
-                    const anioA = parseInt(a.querySelector('.anio-estreno').innerText);
-                    const anioB = parseInt(b.querySelector('.anio-estreno').innerText);
-                    return anioA - anioB; // Orden ascendente por año
-                });
+            }  else if (order === 'oldest') {
+                movies.sort((a, b) => a.getAttribute('data-anio') - b.getAttribute('data-anio'));
+            } else if (order === 'newest') {
+                movies.sort((a, b) => b.getAttribute('data-anio') - a.getAttribute('data-anio'));
             }
 
             // Vuelve a agregar las películas en el nuevo orden
