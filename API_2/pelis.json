@@ -248,7 +248,6 @@
       "titulo": "La Comunidad del Anillo",
       "anio_estreno": 2001
     },
-
     {
       "titulo": "Harry Potter y la piedra filosofal",
       "anio_estreno": 2001
@@ -285,62 +284,46 @@
       "titulo": "Piratas del Caribe: La maldición de la Perla Negra",
       "anio_estreno": 2003
     },    
-
     {
       "titulo": "Parque Jurásico",
       "anio_estreno": 1993
     },
-
     {
       "titulo": "Avatar",
       "anio_estreno": 2009
     },    
-
     {
       "titulo": "La isla de Nim",
       "anio_estreno": 2008
     },   
-
     {
       "titulo": "Los Goonies",
       "anio_estreno": 1985
     },
-
     {
       "titulo": "King Kong",
       "anio_estreno": 2005
     },
-
     {
       "titulo": "El león, la bruja y el armario",
       "anio_estreno": 2005
     },
-
     {
       "titulo": "Jumanji",
       "anio_estreno": 1995
     },   
-
-    {
-      "titulo": "La momia",
-      "anio_estreno": 19
-    },
-
     {
       "titulo": "La momia",
       "anio_estreno": 1999
     },
-
     {
       "titulo": "El libro de la selva",
       "anio_estreno": 1967
     },
-
     {
       "titulo": "El planeta de los simios",
       "anio_estreno": 1968
     },    
-
     {
       "titulo": "Robin Hood: príncipe de los ladrones",
       "anio_estreno": 1991
@@ -528,7 +511,7 @@
     {
       "titulo": "El Tercer Hombre",
       "anio_estreno": 1949
-    }
+    },
     {
       "titulo": "El Gato con Botas",
       "anio_estreno": 2011
@@ -552,6 +535,6 @@
     {
       "titulo": "El Gato con Botas: Atrapado en un cuento épico",
       "anio_estreno": 2017
-    },    
+    }   
   ]
 }
