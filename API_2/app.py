@@ -7,7 +7,7 @@ import json
 
 app = Flask(__name__)
 app.secret_key = 'adkfnasñldkfñlavsjdñfljadbsklfjavjdsfskldjf'  # Cambia esto por una clave segura
-openai.api_key = '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'  # Reemplaza por tu clave de OpenAI
+openai.api_key = ''  # Reemplaza por tu clave de OpenAI
 
 # Configuración de flask-login
 login_manager = LoginManager()
@@ -38,12 +38,12 @@ def registrar_usuario(username, password):
 
 
 def cargar_peliculas():
-    with open(PELICULAS_FILE, 'r') as f:
+    with open(PELICULAS_FILE, 'r', encoding='utf-8') as f:
         peliculas_data = json.load(f)
     return peliculas_data['peliculas']
 
 def cargar_titulo_peliculas():
-    with open(PELICULAS_FILE, 'r') as f:
+    with open(PELICULAS_FILE, 'r', encoding='utf-8') as f:
         peliculas_data = json.load(f)
     peliculas_titulos = [pelicula['titulo'] for pelicula in peliculas_data['peliculas']]
     return peliculas_titulos
@@ -52,7 +52,7 @@ def cargar_titulo_peliculas():
 def cargar_preferencias(usuario):
     preferencias = {}
     if os.path.exists(PREFERENCIAS_FILE):
-        with open(PREFERENCIAS_FILE, 'r') as f:
+        with open(PREFERENCIAS_FILE, 'r', encoding='utf-8') as f:
             preferencias = json.load(f)
     return preferencias.get(usuario, [])
 
@@ -60,12 +60,12 @@ def cargar_preferencias(usuario):
 def guardar_preferencias(usuario, preferencias):
     all_preferencias = {}
     if os.path.exists(PREFERENCIAS_FILE):
-        with open(PREFERENCIAS_FILE, 'r') as f:
+        with open(PREFERENCIAS_FILE, 'r', encoding='utf-8') as f:
             all_preferencias = json.load(f)
 
     all_preferencias[usuario] = preferencias
 
-    with open(PREFERENCIAS_FILE, 'w') as f:
+    with open(PREFERENCIAS_FILE, 'w', encoding='utf-8') as f:
         json.dump(all_preferencias, f)
 
 
