@@ -1,6 +1,6 @@
 # ProyectoColaborativoAPI - Recomendación de Películas
 
-Este proyecto es una aplicación web que permite a los usuarios obtener recomendaciones de películas basadas en el género y el tipo de entretenimiento que prefieran. Además, incluye autenticación de usuario y una integración con la API de OpenAI (versión 0.28) para mejorar la precisión en las recomendaciones.
+Este proyecto es una aplicación web que permite a los usuarios obtener recomendaciones de películas basadas en el género, tipo de película, actores preferidos, duración preferida y idioma que prefieran. Además, incluye autenticación de usuario y una integración con la API de OpenAI (versión 0.28) para mejorar la precisión en las recomendaciones.
 
 ## Tabla de Contenidos
 - [Instalación](#instalación)
