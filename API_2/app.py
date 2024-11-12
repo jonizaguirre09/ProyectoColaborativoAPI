@@ -176,7 +176,7 @@ def obtener_recomendaciones_adicionales():
 
         recomendaciones_texto = respuesta['choices'][0]['message']['content'].strip()
     else:
-        recomendaciones_texto = None
+        recomendaciones_texto = "Aún no te conozco lo suficiente como para recomendarte películas."
     return jsonify(recomendaciones_adicionales=recomendaciones_texto)
 
 
