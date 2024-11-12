@@ -3,7 +3,13 @@
 {% block content %}
     <h1>Recomendaciones</h1>
 
-    {% if recomendaciones_anteriores %}
+    {% if recomendaciones_anteriores is string %}
+    <!-- Si recomendaciones_anteriores es una cadena de texto, lo mostramos como un mensaje simple -->
+    <div class="center-message">
+        <p>{{ recomendaciones_anteriores }}</p>
+    </div>
+    {% else %}
+        <!-- Si recomendaciones_anteriores no es una cadena de texto, se asume que es una lista -->
         <h2>Películas Recomendadas Anteriormente:</h2>
         <ul class="movie-list">
             {% for pelicula in recomendaciones_anteriores %}
@@ -14,25 +20,15 @@
                 </li>
             {% endfor %}
         </ul>
-    {% else %}
-        <p>No tienes recomendaciones anteriores. Se mostrarán algunas películas aleatorias.</p>
-        <ul class="movie-list">
-            {% for pelicula in peliculas_random %}
-                <li>
-                    <a href="#" onclick="obtenerDetalles('{{ pelicula }}')" style="color: black; text-decoration: none;">
-                        {{ pelicula }}
-                    </a>
-                </li>
-            {% endfor %}
-        </ul>
     {% endif %}
 
-
     <!-- Mostrar el texto generado por ChatGPT (Recomendaciones adicionales) -->
-    <div class="recommendation-container" id="recomendaciones-adicionales-container">
-        <h2>A lo mejor te puede interesar...</h2>
-        <p id="recomendaciones-adicionales">Cargando recomendaciones adicionales...</p>
-    </div>
+    {% if recomendaciones_adicionales %}
+        <div class="recommendation-container" id="recomendaciones-adicionales-container">
+            <h2>A lo mejor te puede interesar...</h2>
+            <p id="recomendaciones-adicionales">{{ recomendaciones_adicionales }}</p>
+        </div>
+    {% endif %}
 
     <!-- Modal para mostrar detalles de la película -->
     <div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); color:white; padding:40px;">
@@ -137,6 +133,21 @@
             border-radius: 10px;
             max-width: 500px;
             margin: auto;
+        }
+
+        .center-message {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 80vh;
+            text-align: center;
+            font-size: 1.2em;
+            color: #333;
+            margin-top: 0vh;
+        }
+
+        .center-message p {
+            margin: 0;
         }
     </style>
 {% endblock %}
