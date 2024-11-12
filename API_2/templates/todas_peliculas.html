@@ -13,19 +13,22 @@
     <div class="form-container" style="display: flex; gap: 10px; justify-content: center; margin-bottom: 20px;">
         <button onclick="sortMovies('az')">Ordenar A-Z</button>
         <button onclick="sortMovies('za')">Ordenar Z-A</button>
+        <button onclick="sortMovies('anio')">Ordenar por Año de Estreno</button>
     </div>
 
     <!-- Listado de películas -->
     <ul class="movie-list" id="movie-list">
         {% for pelicula in todas_peliculas %}
             <li>
-                <a href="#" onclick="obtenerDetalles('{{ pelicula }}')" style="color: black; text-decoration: none;">
-                    {{ pelicula }}
+                <a href="#" onclick="obtenerDetalles('{{ pelicula['titulo'] }}')" style="color: black; text-decoration: none;">
+                    {{ pelicula['titulo'] }}
                 </a>
+                <!-- Año de estreno en un campo oculto -->
+                <span class="anio-estreno" style="display: none;">{{ pelicula['anio_estreno'] }}</span>
             </li>
         {% endfor %}
     </ul>
-    
+
     <!-- Script para buscar y ordenar las películas -->
     <script>
         // Selección del campo de búsqueda y lista de películas
@@ -46,16 +49,23 @@
         function sortMovies(order) {
             // Ordenamiento alfabético (A-Z y Z-A)
             if (order === 'az') {
-                movies.sort((a, b) => a.textContent.localeCompare(b.textContent));
+                movies.sort((a, b) => a.querySelector('a').textContent.localeCompare(b.querySelector('a').textContent));
             } else if (order === 'za') {
-                movies.sort((a, b) => b.textContent.localeCompare(a.textContent));
+                movies.sort((a, b) => b.querySelector('a').textContent.localeCompare(a.querySelector('a').textContent));
+            } else if (order === 'anio') {
+                // Ordenamiento por año de estreno
+                movies.sort((a, b) => {
+                    const anioA = parseInt(a.querySelector('.anio-estreno').innerText);
+                    const anioB = parseInt(b.querySelector('.anio-estreno').innerText);
+                    return anioA - anioB; // Orden ascendente por año
+                });
             }
 
             // Vuelve a agregar las películas en el nuevo orden
             movies.forEach(movie => movieList.appendChild(movie));
         }
     </script>
-    
+
     <!-- Modal para mostrar detalles de la película -->
     <div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); color:white; padding:40px;">
         <div style="background:#333; padding:20px; border-radius:10px; max-width:500px; margin:auto;">
