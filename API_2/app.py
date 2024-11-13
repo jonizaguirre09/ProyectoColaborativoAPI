@@ -18,7 +18,6 @@ USER_FILE = 'usuarios.txt'
 PELICULAS_FILE = 'peliculas.json'
 PREFERENCIAS_FILE = 'preferencias_usuarios.json'
 
-
 def cargar_usuarios():
     usuarios = {}
     if os.path.exists(USER_FILE):
@@ -30,12 +29,10 @@ def cargar_usuarios():
                     usuarios[username] = password_hash.encode()
     return usuarios
 
-
 def registrar_usuario(username, password):
     password_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
     with open(USER_FILE, 'a') as f:
         f.write(f"{username}:{password_hash.decode()}\n")
-
 
 def cargar_peliculas():
     with open(PELICULAS_FILE, 'r', encoding='utf-8') as f:
@@ -48,14 +45,12 @@ def cargar_titulo_peliculas():
     peliculas_titulos = [pelicula['titulo'] for pelicula in peliculas_data['peliculas']]
     return peliculas_titulos
 
-
 def cargar_preferencias(usuario):
     preferencias = {}
     if os.path.exists(PREFERENCIAS_FILE):
         with open(PREFERENCIAS_FILE, 'r', encoding='utf-8') as f:
             preferencias = json.load(f)
     return preferencias.get(usuario, [])
-
 
 def guardar_preferencias(usuario, preferencias):
     all_preferencias = {}
@@ -68,21 +63,17 @@ def guardar_preferencias(usuario, preferencias):
     with open(PREFERENCIAS_FILE, 'w', encoding='utf-8') as f:
         json.dump(all_preferencias, f)
 
-
 class User(UserMixin):
     def __init__(self, id):
         self.id = id
-
 
 @login_manager.user_loader
 def load_user(user_id):
     return User(user_id)
 
-
 @app.route('/')
 def home():
     return redirect(url_for('login'))
-
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -102,11 +93,9 @@ def login():
 
     return render_template('login.html')
 
-
 @app.route('/pagina_resgistro')
 def pagina_registro():
     return render_template('registrar.html')
-
 
 @app.route('/registrar', methods=['POST'])
 def registrar():
@@ -127,14 +116,12 @@ def registrar():
         flash('¡Registro exitoso! Ahora puedes iniciar sesión.', 'success')
         return redirect(url_for('login'))
 
-
 @app.route('/logout')
 @login_required
 def logout():
     logout_user()
     flash('¡Logout exitoso! Ahora puedes volver a iniciar sesión.', 'success')
     return redirect(url_for('login'))
-
 
 # Página de Recomendaciones
 @app.route('/recomendadas')
@@ -158,7 +145,6 @@ def recomendadas():
 
     return render_template('recomendadas.html', recomendaciones_anteriores=recomendaciones_chatgpt)
 
-
 @app.route('/recomendacion_adicional')
 @login_required
 def obtener_recomendaciones_adicionales():
@@ -179,14 +165,11 @@ def obtener_recomendaciones_adicionales():
         recomendaciones_texto = "Aún no te conozco lo suficiente como para recomendarte películas."
     return jsonify(recomendaciones_adicionales=recomendaciones_texto)
 
-
-
 @app.route('/todas_peliculas')
 @login_required
 def todas_peliculas():
     todas_peliculas = cargar_peliculas()
     return render_template('todas_peliculas.html', todas_peliculas=todas_peliculas)
-
 
 @app.route('/que_te_apetece', methods=['GET', 'POST'])
 @login_required
@@ -214,9 +197,6 @@ def que_te_apetece():
 
     return render_template('que_te_apetece.html')
 
-
-
-
 @app.route('/detalles_pelicula')
 @login_required
 def detalles_pelicula():
@@ -232,6 +212,33 @@ def detalles_pelicula():
 
     return jsonify({'detalles': detalles})
 
+# Perfil de usuario
+@app.route('/perfil')
+@login_required
+def perfil():
+    usuario_nombre = current_user.id  # Obtiene el nombre del usuario actual desde current_user.id
+    return render_template('perfil.html', usuario_nombre=usuario_nombre)
+
+# Ruta para eliminar SOLO las preferencias del usuario
+@app.route('/eliminar_datos', methods=['POST'])
+@login_required
+def eliminar_datos():
+    usuario = current_user.id  # Utiliza el usuario autenticado
+
+    if os.path.exists(PREFERENCIAS_FILE):
+        with open(PREFERENCIAS_FILE, 'r', encoding='utf-8') as archivo:
+            preferencias = json.load(archivo)
+
+        # Vacía las preferencias del usuario actual si existen
+        if usuario in preferencias:
+            preferencias[usuario] = []  # O usa preferencias.clear() si prefieres dejarlo vacío
+
+        with open(PREFERENCIAS_FILE, 'w', encoding='utf-8') as archivo:
+            json.dump(preferencias, archivo)
+
+        flash("Preferencias eliminadas correctamente.", 'success')
+
+    return redirect(url_for('perfil'))
 
 if __name__ == '__main__':
     app.run(debug=True)
