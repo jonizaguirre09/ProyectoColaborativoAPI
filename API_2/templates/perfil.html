@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <style>
+        .profile-container {
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 400px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .profile-container h2 {
+            color: #333;
+        }
+
+        .profile-container button {
+            padding: 10px 20px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #333;
+            background-color: #e0e0e0;
+            width: 100%;
+        }
+
+        /* Efecto hover en los botones */
+        .profile-container button:hover {
+            background-color: #d5d5d5;
+        }
+
+        /* Estilo para la notificación */
+        .notification {
+            display: none;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .show {
+            display: block;
+        }
+    </style>
+
+<div class="profile-container">
+    <h2>Perfil de Usuario</h2>
+    <p>Bienvenido, {{ usuario_nombre }}</p>
+
+        <!-- Mostrar mensajes flash -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <!-- Botón para eliminar SOLO preferencias -->
+    <form action="{{ url_for('eliminar_datos') }}" method="POST" onsubmit="return confirmAction(event, 'Preferencias eliminadas exitosamente')">
+        <button type="submit" class="delete-data">Eliminar preferencias almacenadas</button>
+    </form>
+
+    <!-- Botón para eliminar cuenta y preferencias -->
+    <form action="{{ url_for('eliminar_usuario_endpoint') }}" method="POST" onsubmit="return confirmAction(event, 'Cuenta eliminada exitosamente')">
+        <button type="submit" class="delete-account">Eliminar cuenta</button>
+    </form>
+</div>
+    <!-- Contenedor de la notificación -->
+    <div id="notification" class="notification"></div>
+
+<script>
+    // Función para mostrar la notificación y luego enviar el formulario
+    function confirmAction(event, message) {
+        event.preventDefault(); // Evita el envío automático del formulario
+        var notification = document.getElementById("notification");
+        notification.innerText = message; // Muestra el mensaje
+        notification.classList.add("show"); // Hace visible la notificación
+
+        // Ocultar la notificación después de 3 segundos y enviar el formulario
+        setTimeout(function() {
+            notification.classList.remove("show");
+            event.target.submit(); // Envía el formulario
+        }, 3000);
+
+        return false; // Evita que el formulario se envíe de inmediato
+    }
+</script>
+{% endblock %}
