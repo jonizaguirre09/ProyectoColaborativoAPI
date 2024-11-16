@@ -93,7 +93,7 @@ def login():
 
     return render_template('login.html')
 
-@app.route('/pagina_resgistro')
+@app.route('/pagina_registro')
 def pagina_registro():
     return render_template('registrar.html')
 
