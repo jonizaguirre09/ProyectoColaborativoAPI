@@ -30,6 +30,114 @@
       "anio_estreno": 1997
     },    
     {
+      "titulo": "La melodía de Broadway",
+      "anio_estreno": 1929
+    },
+    {
+      "titulo": "La calle 42",
+      "anio_estreno": 1933
+    },    
+    {
+      "titulo": "Sombrero de copa",
+      "anio_estreno": 1935
+    },
+    {
+      "titulo": "El mago de Oz",
+      "anio_estreno": 1939
+    },  
+    {
+      "titulo": "Un día en Nueva York",
+      "anio_estreno": 1949
+    },
+    {
+      "titulo": "Cantando bajo la lluvia",
+      "anio_estreno": 1952
+    },    
+    {
+      "titulo": "Jane",
+      "anio_estreno": 1953
+    },    
+    {
+      "titulo": "El rey y yo",
+      "anio_estreno": 1956
+    },
+    {
+      "titulo": "Oklahoma!",
+      "anio_estreno": 1955
+    },
+    {
+      "titulo": "West Side Story",
+      "anio_estreno": 1961
+    },
+    {
+      "titulo": "Sonrisas y lágrimas",
+      "anio_estreno": 1965
+    },
+    {
+      "titulo": "Oliver",
+      "anio_estreno": 1968
+    },    
+    {
+      "titulo": "Funny Girl",
+      "anio_estreno": 1968
+    },
+    {
+      "titulo": "Cabaret",
+      "anio_estreno": 1972
+    },
+    {
+      "titulo": "Grease",
+      "anio_estreno": 1978
+    },    
+    {
+      "titulo": "Mamma Mia!",
+      "anio_estreno": 2008
+    },
+    {
+      "titulo": "El gran showman",
+      "anio_estreno": 2017
+    },
+    {
+      "titulo": "Los Miserables",
+      "anio_estreno": 2012
+    },   
+    {
+      "titulo": "Moulin Rouge!",
+      "anio_estreno": 2001
+    },
+    {
+      "titulo": "La sirenita",
+      "anio_estreno": 1989
+    },
+    {
+      "titulo": "El jorobado de Notre Dame",
+      "anio_estreno": 1996
+    },    
+    {
+      "titulo": "Chicago",
+      "anio_estreno": 2002
+    },
+    {
+      "titulo": "Frozen",
+      "anio_estreno": 2013
+    },
+    {
+      "titulo": "Kika",
+      "anio_estreno": 1993
+    },    
+    {
+      "titulo": "Julieta",
+      "anio_estreno": 2016
+    },
+    {
+      "titulo": "Dolor y Gloria",
+      "anio_estreno": 2015
+    },
+    {
+      "titulo": "Los amantes pasajeros",
+      "anio_estreno": 2015
+    },    
+    {
       "titulo": "Million Dollar Baby",
       "anio_estreno": 2004
     },
@@ -60,6 +168,94 @@
     {
       "titulo": "The Father",
       "anio_estreno": 2020
+    },    
+    {
+      "titulo": "Madres Paralelas",
+      "anio_estreno": 2021
+    },
+    {
+      "titulo": "La habitación de al lado",
+      "anio_estreno": 2024
+    },
+    {
+      "titulo": "Jamón, jamón",
+      "anio_estreno": 1992
+    },
+    {
+      "titulo": "La infiltrada",
+      "anio_estreno": 2024
+    },
+    {
+      "titulo": "Políticamente incorrectos",
+      "anio_estreno": 2024
+    },  
+    {
+      "titulo": "La familia perfecta",
+      "anio_estreno": 2021
+    },
+    {
+      "titulo": "Chinas",
+      "anio_estreno": 2023
+    },  
+    {
+      "titulo": "Carmen y Lola",
+      "anio_estreno": 2018
+    },
+    {
+      "titulo": "Días contados",
+      "anio_estreno": 1994
+    },      
+    {
+      "titulo": "Todo sobre mi madre",
+      "anio_estreno": 1999
+    },
+    {
+      "titulo": "Pieles",
+      "anio_estreno": 2017
+    },  
+    {
+      "titulo": "La boda de Rosa",
+      "anio_estreno": 2020
+    },
+    {
+      "titulo": "Salir del ropero",
+      "anio_estreno": 2020
+    },  
+    {
+      "titulo": "Maixabel",
+      "anio_estreno": 2021
+    },
+    {
+      "titulo": "El efecto mariposa",
+      "anio_estreno": 1995
+    },
+    {
+      "titulo": "Ma ma",
+      "anio_estreno": 2015
+    },  
+    {
+      "titulo": "Celda 211",
+      "anio_estreno": 2009
+    },
+    {
+      "titulo": "Te doy mis ojos",
+      "anio_estreno": 2003
+    },  
+    {
+      "titulo": "Las vidas de Celia",
+      "anio_estreno": 2007
+    },
+    {
+      "titulo": "Lope",
+      "anio_estreno": 2010
+    },      
+    {
+      "titulo": "El olivo",
+      "anio_estreno": 2016
+    },      
+    {
+      "titulo": "Mujeres al borde de un ataque de nervios",
+      "anio_estreno": 1988
     },    
     {
       "titulo": "Atrapado en el tiempo",
