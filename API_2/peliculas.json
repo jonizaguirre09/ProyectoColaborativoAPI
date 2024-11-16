@@ -1,23 +1,537 @@
+
 {
-  "peliculas": ["The Dark Knight",
-    "Dracula 2000",
-    "Vampires Suck",
-    "Bloodsucking Bastards",
-    "Fright Night",
-    "Nightwatch",
-    "Living Among Us",
-    "The House of Dark Shadows",
-    "Bubba Ho-Tep",
-    "Night of the Creeps",
-    "Dead Snow",
-    "Dead Snow 2: Red vs. Dead",
-    "Blood for Dracula",
-    "Fright Night Part 2",
-    "Dark Night of the Scarecrow",
-    "Sharknado",
-    "The Dead",
-    "Goke, Body Snatcher from Hell",
-    "Rabid",
-    "Vampire Circus",
-    "Scars of Dracula"]
+  "peliculas": [
+    {
+      "titulo": "El Padrino",
+      "anio_estreno": 1972
+    },
+    {
+      "titulo": "Forrest Gump",
+      "anio_estreno": 1994
+    },
+    {
+      "titulo": "El pianista",
+      "anio_estreno": 2002
+    },
+    {
+      "titulo": "La Lista de Schindler",
+      "anio_estreno": 1993
+    },
+    {
+      "titulo": "En busca de la felicidad",
+      "anio_estreno": 2006
+    },    
+    {
+      "titulo": "American Beauty",
+      "anio_estreno": 1999
+    },
+    {
+      "titulo": "El indomable Will Hunting",
+      "anio_estreno": 1997
+    },    
+    {
+      "titulo": "Million Dollar Baby",
+      "anio_estreno": 2004
+    },
+    {
+      "titulo": "El club de la lucha",
+      "anio_estreno": 1999
+    },    
+    {
+      "titulo": "Birdman",
+      "anio_estreno": 2014
+    },
+    {
+      "titulo": "Parásitos",
+      "anio_estreno": 2019
+    },    
+    {
+      "titulo": "12 años de esclavitud",
+      "anio_estreno": 2013
+    },
+    {
+      "titulo": "El laberinto del fauno",
+      "anio_estreno": 2006
+    },    
+    {
+      "titulo": "Roma",
+      "anio_estreno": 2018
+    },
+    {
+      "titulo": "The Father",
+      "anio_estreno": 2020
+    },    
+    {
+      "titulo": "Atrapado en el tiempo",
+      "anio_estreno": 1993
+    },
+    {
+      "titulo": "La vida de Brian",
+      "anio_estreno": 1979
+    },    
+    {
+      "titulo": "Superbad",
+      "anio_estreno": 2007
+    },
+    {
+      "titulo": "El príncipe de Zamunda",
+      "anio_estreno": 1988
+    },    
+    {
+      "titulo": "Pretty Woman",
+      "anio_estreno": 1990
+    },
+    {
+      "titulo": "The Mask",
+      "anio_estreno": 1994
+    },    
+    {
+      "titulo": "American Pie",
+      "anio_estreno": 1999
+    },
+    {
+      "titulo": "Knocked up",
+      "anio_estreno": 2007
+    },    
+    {
+      "titulo": "La terminal",
+      "anio_estreno": 2004
+    },
+    {
+      "titulo": "Mentiroso compulsivo",
+      "anio_estreno": 1997
+    },
+    {
+      "titulo": "Los cazafantasmas",
+      "anio_estreno": 1984
+    },
+    {
+      "titulo": "El diablo se viste de Prada",
+      "anio_estreno": 2006
+    },
+    {
+      "titulo": "Zoolander",
+      "anio_estreno": 2001
+    },
+    {
+      "titulo": "Cómo perder a un hombre en 10 días",
+      "anio_estreno": 2003
+    },
+    {
+      "titulo": "La boda de mi mejor amiga",
+      "anio_estreno": 2011
+    },
+    {
+      "titulo": "El exorcista",
+      "anio_estreno": 1973
+    },
+    {
+      "titulo": "Psicosis",
+      "anio_estreno": 1960
+    },
+    {
+      "titulo": "It",
+      "anio_estreno": 2017
+    },
+    {
+      "titulo": "El resplandor",
+      "anio_estreno": 1980
+    },
+    {
+      "titulo": "Hereditary",
+      "anio_estreno": 2018
+    },
+    {
+      "titulo": "Halloween",
+      "anio_estreno": 1978
+    },
+    {
+      "titulo": "Expediente Warren: The Conjuring",
+      "anio_estreno": 2013
+    },
+    {
+      "titulo": "Sinister",
+      "anio_estreno": 2012
+    },
+    {
+      "titulo": "Paranormal Activity",
+      "anio_estreno": 2007
+    },
+    {
+      "titulo": "La noche de los muertos vivientes",
+      "anio_estreno": 1968
+    },
+    {
+      "titulo": "Pesadilla en Elm Street",
+      "anio_estreno": 1984
+    },
+    {
+      "titulo": "Midsommar",
+      "anio_estreno": 2019
+    },
+    {
+      "titulo": "Expediente Warren: El caso Enfield",
+      "anio_estreno": 2016
+    },
+    {
+      "titulo": "El proyecto de la bruja de Blair",
+      "anio_estreno": 1999
+    },
+    {
+      "titulo": "Saw",
+      "anio_estreno": 2004
+    },
+    {
+      "titulo": "Jungla de cristal",
+      "anio_estreno": 1988
+    },
+    {
+      "titulo": "Mad Max: Fury Road",
+      "anio_estreno": 2015
+    },
+    {
+      "titulo": "Gladiator",
+      "anio_estreno": 2000
+    },
+    {
+      "titulo": "The Dark Knight",
+      "anio_estreno": 2008
+    },
+    {
+      "titulo": "Terminator 2: El juicio final",
+      "anio_estreno": 1991
+    },
+    {
+      "titulo": "Matrix",
+      "anio_estreno": 1999
+    },
+    {
+      "titulo": "John Wick",
+      "anio_estreno": 2014
+    },
+    {
+      "titulo": "Misión imposible: Fallout",
+      "anio_estreno": 2018
+    },
+    {
+      "titulo": "Casino Royale",
+      "anio_estreno": 2006
+    },
+    {
+      "titulo": "Kill Bill",
+      "anio_estreno": 2003
+    },
+    {
+      "titulo": "Los mercenarios",
+      "anio_estreno": 2010
+    },
+    {
+      "titulo": "300",
+      "anio_estreno": 2007
+    },
+    {
+      "titulo": "Fast & Furious 7",
+      "anio_estreno": 2015
+    },
+    {
+      "titulo": "Los Vengadores",
+      "anio_estreno": 2012
+    },
+    {
+      "titulo": "Acorralado",
+      "anio_estreno": 1982
+    },
+    {
+      "titulo": "En busca del arca perdida",
+      "anio_estreno": 1981
+    },
+    {
+      "titulo": "Harry Potter y la piedra filosofal",
+      "anio_estreno": 2001
+    },
+    {
+      "titulo": "Harry Potter y la cámara secreta",
+      "anio_estreno": 2002
+    },
+    {
+      "titulo": "Harry Potter y el prisionero de Azkaban",
+      "anio_estreno": 2004
+    },
+    {
+      "titulo": "Harry Potter y el caliz de fuego",
+      "anio_estreno": 2005
+    },    
+    {
+      "titulo": "Harry Potter y la Orden del Fénix",
+      "anio_estreno": 2007
+    },
+    {
+      "titulo": "Harry Potter y el misterio del príncipe",
+      "anio_estreno": 2009
+    },
+    {
+      "titulo": "Harry Potter y las reliquia de la Muerte (parte 1)",
+      "anio_estreno": 2010
+    },
+    {
+      "titulo": "Harry Potter y las reliquias de la Muerte (parte 2)",
+      "anio_estreno": 2011
+    },    
+    {
+      "titulo": "Piratas del Caribe: La maldición de la Perla Negra",
+      "anio_estreno": 2003
+    },    
+    {
+      "titulo": "Parque Jurásico",
+      "anio_estreno": 1993
+    },
+    {
+      "titulo": "Avatar",
+      "anio_estreno": 2009
+    },    
+    {
+      "titulo": "La isla de Nim",
+      "anio_estreno": 2008
+    },   
+    {
+      "titulo": "Los Goonies",
+      "anio_estreno": 1985
+    },
+    {
+      "titulo": "King Kong",
+      "anio_estreno": 2005
+    },
+    {
+      "titulo": "El león, la bruja y el armario",
+      "anio_estreno": 2005
+    },
+    {
+      "titulo": "Jumanji",
+      "anio_estreno": 1995
+    },   
+    {
+      "titulo": "La momia",
+      "anio_estreno": 1999
+    },
+    {
+      "titulo": "El libro de la selva",
+      "anio_estreno": 1967
+    },
+    {
+      "titulo": "El planeta de los simios",
+      "anio_estreno": 1968
+    },    
+    {
+      "titulo": "Robin Hood: príncipe de los ladrones",
+      "anio_estreno": 1991
+    },    
+    {
+      "titulo": "La Vida es Bella",
+      "anio_estreno": 1997
+    },
+    {
+      "titulo": "Seven",
+      "anio_estreno": 1995
+    },
+    {
+      "titulo": "Zodiac",
+      "anio_estreno": 2007
+    },
+    {
+      "titulo": "Shutter Island",
+      "anio_estreno": 2010
+    },
+    {
+      "titulo": "Prisioneros",
+      "anio_estreno": 2013
+    },
+    {
+      "titulo": "El sexto sentido",
+      "anio_estreno": 1999
+    },
+    {
+      "titulo": "Memento",
+      "anio_estreno": 2000
+    },
+    {
+      "titulo": "Perdida",
+      "anio_estreno": 2014
+    },
+    {
+      "titulo": "La ventana indiscreta",
+      "anio_estreno": 1954
+    },
+    {
+      "titulo": "Oldboy",
+      "anio_estreno": 2003
+    },
+    {
+      "titulo": "En la boca del miedo",
+      "anio_estreno": 1994
+    },
+    {
+      "titulo": "Tiburón",
+      "anio_estreno": 1975
+    },
+    {
+      "titulo": "Los otros",
+      "anio_estreno": 2001
+    },
+    {
+      "titulo": "Vértigo",
+      "anio_estreno": 1958
+    },    
+    {
+      "titulo": "2001: Odisea en el Espacio",
+      "anio_estreno": 1968
+    },
+    {
+      "titulo": "La La Land",
+      "anio_estreno": 2016
+    },
+    {
+      "titulo": "El Señor de los Anillos: La Comunidad del Anillo",
+      "anio_estreno": 2001
+    },
+    {
+      "titulo": "El Señor de los Anillos: Las dos torres",
+      "anio_estreno": 2002
+    },    
+    {
+      "titulo": "El Señor de los Anillos: El retorno del rey",
+      "anio_estreno": 2003
+    },
+    {
+      "titulo": "El Hobbit: Un viaje inesperado",
+      "anio_estreno": 2012
+    },
+    {
+      "titulo": "El Hobbit: La desolación de Smaug",
+      "anio_estreno": 2013
+    },
+    {
+      "titulo": "El Hobbit: La batalla de los cinco ejércitos",
+      "anio_estreno": 2014
+    },    
+    {
+      "titulo": "El Señor de los Anillos: Los Anillos del Poder",
+      "anio_estreno": 2022
+    },    
+    {
+      "titulo": "Won’t You Be My Neighbor?",
+      "anio_estreno": 2018
+    },
+    {
+      "titulo": "Toy Story",
+      "anio_estreno": 1995
+    },
+    {
+      "titulo": "Toy Story 2",
+      "anio_estreno": 1999
+    },
+    {
+      "titulo": "Toy Story 3",
+      "anio_estreno": 2010
+    },
+    {
+      "titulo": "Toy Story 4",
+      "anio_estreno": 2019
+    }, 
+    {
+      "titulo": "Lightyear",
+      "anio_estreno": 2022
+    },   
+    {
+      "titulo": "El Rey León",
+      "anio_estreno": 1994
+    },    
+    {
+      "titulo": "El Rey León (Live Action)",
+      "anio_estreno": 2019
+    },
+    {
+      "titulo": "Spider-Man",
+      "anio_estreno": 2002
+    },    
+    {
+      "titulo": "Spider-Man 2",
+      "anio_estreno": 2004
+    },    
+    {
+      "titulo": "Spider-Man 3",
+      "anio_estreno": 2007
+    },    
+    {
+      "titulo": "The Amazing Spider-Man",
+      "anio_estreno": 2012
+    },    
+    {
+      "titulo": "The Amazing Spider-Man 2",
+      "anio_estreno": 2014
+    },    
+    {
+      "titulo": "Spider-Man: Homecoming",
+      "anio_estreno": 2017
+    },    
+    {
+      "titulo": "Spider-Man: Un Nuevo Universo",
+      "anio_estreno": 2018
+    },
+    {
+      "titulo": "Spider-Man: Far From Home",
+      "anio_estreno": 2019
+    },    
+    {
+      "titulo": "Spider-Man: No Way Home",
+      "anio_estreno": 2021
+    },    
+    {
+      "titulo": "El Gabinete del Dr. Caligari",
+      "anio_estreno": 1920
+    },
+    {
+      "titulo": "El Silencio de los Corderos",
+      "anio_estreno": 1991
+    },
+    {
+      "titulo": "La Diligencia",
+      "anio_estreno": 1939
+    },
+    {
+      "titulo": "Bohemian Rhapsody",
+      "anio_estreno": 2018
+    },
+    {
+      "titulo": "Salvar al Soldado Ryan",
+      "anio_estreno": 1998
+    },
+    {
+      "titulo": "El Tercer Hombre",
+      "anio_estreno": 1949
+    },
+    {
+      "titulo": "El Gato con Botas",
+      "anio_estreno": 2011
+    },
+    {
+      "titulo": "Shrek",
+      "anio_estreno": 2001
+    },
+    {
+      "titulo": "Shrek 2",
+      "anio_estreno": 2004
+    },    
+    {
+      "titulo": "Shrek 3",
+      "anio_estreno": 2007
+    },    
+    {
+      "titulo": "El Gato con Botas: Los tres diablos",
+      "anio_estreno": 2011
+    },  
+    {
+      "titulo": "El Gato con Botas: Atrapado en un cuento épico",
+      "anio_estreno": 2017
+    }   
+  ]
 }
