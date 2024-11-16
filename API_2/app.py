@@ -15,7 +15,7 @@ login_manager.init_app(app)
 login_manager.login_view = 'login'
 
 USER_FILE = 'usuarios.txt'
-PELICULAS_FILE = 'pelis.json'
+PELICULAS_FILE = 'peliculas.json'
 PREFERENCIAS_FILE = 'preferencias_usuarios.json'
 
 def cargar_usuarios():
