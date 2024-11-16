@@ -7,7 +7,7 @@ import json
 
 app = Flask(__name__)
 app.secret_key = 'adkfnasñldkfñlavsjdñfljadbsklfjavjdsfskldjf'  # Cambia esto por una clave segura
-openai.api_key = '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'  # Reemplaza por tu clave de OpenAI
+openai.api_key = ''  # Reemplaza por tu clave de OpenAI
 
 # Configuración de flask-login
 login_manager = LoginManager()
@@ -15,7 +15,7 @@ login_manager.init_app(app)
 login_manager.login_view = 'login'
 
 USER_FILE = 'usuarios.txt'
-PELICULAS_FILE = 'peliculas.json'
+PELICULAS_FILE = 'pelis.json'
 PREFERENCIAS_FILE = 'preferencias_usuarios.json'
 
 def cargar_usuarios():
@@ -116,6 +116,68 @@ def registrar():
         flash('¡Registro exitoso! Ahora puedes iniciar sesión.', 'success')
         return redirect(url_for('login'))
 
+# Perfil de usuario
+@app.route('/perfil')
+@login_required
+def perfil():
+    usuario_nombre = current_user.id  # Obtiene el nombre del usuario actual desde current_user.id
+    return render_template('perfil.html', usuario_nombre=usuario_nombre)
+
+# Ruta para eliminar SOLO las preferencias del usuario
+@app.route('/eliminar_datos', methods=['POST'])
+@login_required
+def eliminar_datos():
+    usuario = current_user.id  # Utiliza el usuario autenticado
+
+    if os.path.exists(PREFERENCIAS_FILE):
+        with open(PREFERENCIAS_FILE, 'r', encoding='utf-8') as archivo:
+            preferencias = json.load(archivo)
+
+        # Vacía las preferencias del usuario actual si existen
+        if usuario in preferencias:
+            preferencias[usuario] = []  # O usa preferencias.clear() si prefieres dejarlo vacío
+
+        with open(PREFERENCIAS_FILE, 'w', encoding='utf-8') as archivo:
+            json.dump(preferencias, archivo)
+
+        flash("Preferencias eliminadas correctamente.", 'success')
+
+    return redirect(url_for('perfil'))
+
+# Ruta para eliminar la cuenta del usuario y sus preferencias
+@app.route('/eliminar_usuario', methods=['POST'])
+@login_required
+def eliminar_usuario_endpoint():
+    usuario = current_user.id  # Utiliza el usuario autenticado
+
+    # Eliminar cuenta del archivo de usuarios
+    if os.path.exists(USER_FILE):
+        with open(USER_FILE, 'r') as archivo:
+            lineas = archivo.readlines()
+
+        # Reescribe el archivo sin la cuenta del usuario actual
+        with open(USER_FILE, 'w') as archivo:
+            for linea in lineas:
+                if not linea.startswith(f"{usuario}:"):
+                    archivo.write(linea)
+
+    # Eliminar preferencias del archivo de preferencias
+    if os.path.exists(PREFERENCIAS_FILE):
+        with open(PREFERENCIAS_FILE, 'r', encoding='utf-8') as archivo:
+            preferencias = json.load(archivo)
+
+        # Elimina las preferencias del usuario actual si existen
+        if usuario in preferencias:
+            del preferencias[usuario]
+
+        # Guarda el archivo de preferencias sin las preferencias del usuario eliminado
+        with open(PREFERENCIAS_FILE, 'w', encoding='utf-8') as archivo:
+            json.dump(preferencias, archivo)
+
+    flash("Cuenta y preferencias eliminadas correctamente.", 'success')
+    return redirect(url_for('logout'))
+
+
 @app.route('/logout')
 @login_required
 def logout():
@@ -133,7 +195,7 @@ def recomendadas():
 
     if preferencias_anteriores:
         # Llamada a ChatGPT para obtener recomendaciones basadas en las preferencias
-        prompt = f"Eres un recomendador de películas. En base a estas preferencias del usuario: {', '.join(preferencias_anteriores)}  elige SIEMPRE 15 películas DIFERENTES que aparezcan ahí: {todas_peliculas}"
+        prompt = f"Eres un recomendador de películas. En base a estas preferencias del usuario: {', '.join(preferencias_anteriores)}  elige SIEMPRE 15 películas que aparezcan ahí: {todas_peliculas}"
         respuesta = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",  # Cambia a gpt-4 si lo prefieres
             messages=[{"role": "user", "content": prompt}]
@@ -153,7 +215,7 @@ def obtener_recomendaciones_adicionales():
     todas_canciones = cargar_titulo_peliculas()
 
     if preferencias_anteriores:
-        prompt = f"Genera un texto de recomendación en lenguaje natural recomendando algunas peliculas basadas en las preferencias del usuario: {', '.join(preferencias_anteriores)}. No incluyas ninguna de las siguientes peliculas: {', '.join(todas_canciones)}. El texto debe ser ameno y natural, y al menos me debes recomendar 3 peliculas. Y debes ser consciente de que el texto comienza con -çY a lo mejor te puede interesar...-. Para que tengas en cuenta que tu texto tiene que tener cohesion con esa frase. Pero tu respuesta no debe empezar con Y a lo mejor te puede interesar, porque eso ya esta escrito.."
+        prompt = f"Genera un texto de recomendación en lenguaje natural recomendando algunas peliculas basadas en las preferencias del usuario: {', '.join(preferencias_anteriores)}. No incluyas ninguna de las siguientes peliculas: {', '.join(todas_canciones)}. El texto debe ser ameno y natural, y al menos me debes recomendar 3 peliculas. Y que la respuesta debe ceñirse unicamente a recomendarme esas peliculas adicionales."
 
         respuesta = openai.ChatCompletion.create(
             model="gpt-4",
@@ -185,7 +247,7 @@ def que_te_apetece():
         guardar_preferencias(current_user.id, preferencias)
 
         todas_peliculas = cargar_titulo_peliculas()
-        prompt = f"Eres un recomendador de películas.En base a las preferencias del usuario, elige SIEMPRE 10 películas DIFERENTES que mejor coincidan con: Género: {genero}. Tipo de película: {tipoDePelicula}. Duración de la película: {duracion}. Actores preferidos: {actoresPreferidos}. Idioma de la película: {idioma} Aquí está la lista de películas disponibles, elige peliculas que aparezcan ahí: {todas_peliculas}"
+        prompt = f"Eres un recomendador de películas.En base a las preferencias del usuario, elige SIEMPRE 10 películas que mejor coincidan con: Género: {genero}. Tipo de película: {tipoDePelicula}. Duración de la película: {duracion}. Actores preferidos: {actoresPreferidos}. Idioma de la película: {idioma} Aquí está la lista de películas disponibles, elige peliculas que aparezcan ahí: {todas_peliculas}"
         print(prompt)
         respuesta = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
@@ -211,34 +273,6 @@ def detalles_pelicula():
     detalles = respuesta['choices'][0]['message']['content'].strip()
 
     return jsonify({'detalles': detalles})
-
-# Perfil de usuario
-@app.route('/perfil')
-@login_required
-def perfil():
-    usuario_nombre = current_user.id  # Obtiene el nombre del usuario actual desde current_user.id
-    return render_template('perfil.html', usuario_nombre=usuario_nombre)
-
-# Ruta para eliminar SOLO las preferencias del usuario
-@app.route('/eliminar_datos', methods=['POST'])
-@login_required
-def eliminar_datos():
-    usuario = current_user.id  # Utiliza el usuario autenticado
-
-    if os.path.exists(PREFERENCIAS_FILE):
-        with open(PREFERENCIAS_FILE, 'r', encoding='utf-8') as archivo:
-            preferencias = json.load(archivo)
-
-        # Vacía las preferencias del usuario actual si existen
-        if usuario in preferencias:
-            preferencias[usuario] = []  # O usa preferencias.clear() si prefieres dejarlo vacío
-
-        with open(PREFERENCIAS_FILE, 'w', encoding='utf-8') as archivo:
-            json.dump(preferencias, archivo)
-
-        flash("Preferencias eliminadas correctamente.", 'success')
-
-    return redirect(url_for('perfil'))
 
 if __name__ == '__main__':
     app.run(debug=True)
