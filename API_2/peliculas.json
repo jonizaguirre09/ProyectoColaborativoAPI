@@ -502,6 +502,63 @@
       "anio_estreno": 2005
     },
     {
+      "titulo": "Tres Cantos",
+      "anio_estreno": 1948
+    },
+
+    {
+      "titulo": "El Circo",
+      "anio_estreno": 1949
+    },
+
+    {
+      "titulo": "Plácido",
+      "anio_estreno": 1961
+    },
+
+    {
+      "titulo": "La boutique",
+      "anio_estreno": 1967
+    },    
+    {
+      "titulo": "Tamaño natural",
+      "anio_estreno": 1974
+    },
+
+    {
+      "titulo": "La escopeta Nacional",
+      "anio_estreno": 1978
+    },
+
+    {
+      "titulo": "La vaquilla",
+      "anio_estreno": 1985
+    },
+
+    {
+      "titulo": "Blade Runner",
+      "anio_estreno": 1982
+    },
+    {
+      "titulo": "Interestelar",
+      "anio_estreno": 2014
+    },
+
+    {
+      "titulo": "Inception",
+      "anio_estreno": 2010
+    },
+
+    {
+      "titulo": "Matrix",
+      "anio_estreno": 1999
+    },
+
+    {
+      "titulo": "Los Increíbles",
+      "anio_estreno": 2004
+    },    
+    {
       "titulo": "Jumanji",
       "anio_estreno": 1995
     },   
@@ -581,6 +638,86 @@
       "titulo": "2001: Odisea en el Espacio",
       "anio_estreno": 1968
     },
+    {
+      "titulo": "Ratatouille",
+      "anio_estreno": 2007
+    },
+    {
+      "titulo": "Aladdin",
+      "anio_estreno": 1992
+    },
+    {
+      "titulo": "50 primeras citas",
+      "anio_estreno": 2004
+    },
+    {
+      "titulo": "Yo, robot",
+      "anio_estreno": 2004
+    },
+    {
+      "titulo": "En busca de la felicidad",
+      "anio_estreno": 2006
+    },
+    {
+      "titulo": "Soy leyenda",
+      "anio_estreno": 2007
+    },
+    {
+      "titulo": "Billy Madison",
+      "anio_estreno": 1995
+    },
+    {
+      "titulo": "Happy Gilmore",
+      "anio_estreno": 1992
+    },    
+    {
+      "titulo": "The Waterboy",
+      "anio_estreno": 1993
+    },
+    {
+      "titulo": "Jack y su gemela",
+      "anio_estreno": 2011
+    },
+    {
+      "titulo": "8 apellidos vascos",
+      "anio_estreno": 2014
+    },
+    {
+      "titulo": "Ahora o nunca",
+      "anio_estreno": 2015
+    },    
+    {
+      "titulo": "Atrapa la bandera",
+      "anio_estreno": 2015
+    },
+    {
+      "titulo": "100 metros",
+      "anio_estreno": 2016
+    },
+    {
+      "titulo": "Thi Mai, rumbo a Vietnam",
+      "anio_estreno": 2017
+    },
+    {
+      "titulo": "Pájaros de papel",
+      "anio_estreno": 2010
+    },  
+    {
+      "titulo": "Mi gran noche",
+      "anio_estreno": 2015
+    },
+    {
+      "titulo": "Días de cine",
+      "anio_estreno": 2006
+    },
+    {
+      "titulo": "Bajo el mismo techo",
+      "anio_estreno": 2018
+    },
+    {
+      "titulo": "Cinco metros cuadrados",
+      "anio_estreno": 2011
+    },    
     {
       "titulo": "La La Land",
       "anio_estreno": 2016
