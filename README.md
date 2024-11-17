@@ -53,26 +53,26 @@ Este proyecto es una aplicación web que permite a los usuarios obtener recomend
    Permite a los usuarios no registrados anteriormente registrarse. Sin embargo, si ya estabas registrado solamente hay que iniciar sesión.
 
 2. **Cartelera**:
-   En el apartado 'Todas las películas' aparece una lista de todas las películas almacenadas en la base de datos. Además, puedes ordenarlas alfabéticamente (A-Z o Z-A) o por fecha de estreno ascendentemente o descendentemente. También hay un buscador para hacer la búsqueda de una película concreta.
+   En el apartado 'Todas las películas' aparece una lista de todas las películas almacenadas en la base de datos. Además, puedes ordenarlas alfabéticamente (A-Z o Z-A) o por fecha de estreno ascendente o descendentemente. También hay un buscador para hacer la búsqueda de una película concreta.
 
 3. **Recomendaciones**:
-   Esta dividido en dos apartados. En el primero apareceran 15 películas recomendadas en base a las preferencias del usuario (estan en la base de datos almacenadas) y además todas las películas recomendadas ahí seran obtenidas de todas las películas de la base de datos.
-   En el segundo se mostrará un texto generado por ChatGPT, el cual recomendara 3 películas que no pertenecen a la base de datos y estan basadas en las preferencias del usuario. Además muestra algo de información sobre estas.
-   Esta sección solo funcionará si anteriormente el usuario ha realizado bsuquedas teniendo así preferencias almacenadas. De lo contrario. aparecera un mensaje difiendonos que aún no nos conoce lo suficiente como para hacernos recomendaciones sobre las películas.
+   Esta dividido en dos apartados. En el primero aparecerán 15 películas recomendadas en base a las preferencias del usuario (están en la base de datos almacenadas) y además todas las películas recomendadas ahí serán obtenidas de todas las películas de la base de datos.
+   En el segundo se mostrará un texto generado por ChatGPT, el cual recomendara 3 películas que no pertenecen a la base de datos y están basadas en las preferencias del usuario. Además, muestra algo de información sobre estas.
+   Esta sección solo funcionará si anteriormente el usuario ha realizado búsquedas teniendo así preferencias almacenadas. De lo contrario. aparecerá un mensaje diciéndonos que aún no nos conoce lo suficiente como para hacernos recomendaciones sobre las películas.
 
 4. **Recomendaciones personalizadas**:
-   En '¿Que te apetece ver hoy?' debes rellenar varios campos obligatorios (género, tipo de película) además de otros optativos (actores preferidos, duración preferida y idioma) para así obtener una lista de 10 películas ajustadas a tu gusto. Dependiendo de la precisión de la busqueda, te recomendará películas mas exáctas a las características añadidas. 
-   Encima, todas las busquedas realizadas quedaran almacenadas en la base de datos para la utilizacion de futuras recomendaciones.
+   En '¿Que te apetece ver hoy?' debes rellenar varios campos obligatorios (género, tipo de película) además de otros optativos (actores preferidos, duración preferida y idioma) para así obtener una lista de 10 películas ajustadas a tu gusto. Dependiendo de la precisión de la búsqueda, te recomendará películas más exactas a las características añadidas. 
+   Encima, todas las búsquedas realizadas quedaran almacenadas en la base de datos para la utilización de futuras recomendaciones.
 
-5. **Breve descripcion**:
-   Independientemente del apartado en el que te encuentres, aparecera una losta de peliculas. Clickando sobre su titulo, se mostrara una pequeña pantalla con un texto generado por ChatGPT que incluye los actores prinicpales y una breve sipnosis de la pelicula seleccionada.
+5. **Breve descripción**:
+   Independientemente del apartado en el que te encuentres, aparecerá una lista de películas. Clickando sobre su título, se mostrará una pequeña pantalla con un texto generado por ChatGPT que incluye los actores principales y una breve sinopsis de la película seleccionada.
 
-6. **Gestion de preferencias almacenadas y cuenta**:
-   Los usuarios tienen la opcion de borrar todas sus preferencias almacenadas sin eliminar su cuenta.
-   Si el usuario decide eliminar su cuenta, todas las preferencias almacenadas tambien se borrras automaticamente.
+6. **Gestión de preferencias almacenadas y cuenta**:
+   Los usuarios tienen la opción de borrar todas sus preferencias almacenadas sin eliminar su cuenta.
+   Si el usuario decide eliminar su cuenta, todas las preferencias almacenadas también se borrarán automáticamente.
 
 7. **Logout de usuarios**:
-   Durate la nevagacion, los usuarios pueden cerrar sesion de su cuenta en cuanto deseen.
+   Durante la navegación, los usuarios pueden cerrar sesión de su cuenta en cuanto deseen.
 
 
 ## Rutas Principales
@@ -84,7 +84,7 @@ Este proyecto es una aplicación web que permite a los usuarios obtener recomend
    Muestra el campo de iniciar sesión (usuario y contraseña).
 
 3. **POST /login**:
-   Procesa los datos de inicio de sesión redirigiendo a la pagina de recomendaciones si es exitoso.
+   Procesa los datos de inicio de sesión redirigiendo a la página de recomendaciones si es exitoso.
 
 4. **GET /pagina_registro**:
    Muestra el campo de registrarse (usuario, contraseña y confirmar contraseña).
@@ -93,7 +93,7 @@ Este proyecto es una aplicación web que permite a los usuarios obtener recomend
    Procesa los datos de registro de usuario validando que no exista ya y que las contraseñas coincidan.
 
 6. **GET /perfil**:
-   Muestra la pagina del perfil del usuario autenticado.
+   Muestra la página del perfil del usuario autenticado.
 
 7. **POST /eliminar_datos**:
    Elimina unicamente las preferencias almacenadas del usuario autenticado.
@@ -102,13 +102,13 @@ Este proyecto es una aplicación web que permite a los usuarios obtener recomend
    Elimina la cuenta del usuario y todas las preferencias almacenadas anteriormente.
 
 9. **POST /logout**:
-   Cierra sesión del usuario y redirige a la pagina de login.
+   Cierra sesión del usuario y redirige a la página de login.
 
 10. **GET /recomendadas**:
    Genera recomendaciones de películas basadas en las preferencias del usuario.
 
 11. **GET /recomendacion_adicional**:
-   Genera recomendaciones adicionales de peliculas en texto basadas en las preferencias del usuario.
+   Genera recomendaciones adicionales de películas en texto basadas en las preferencias del usuario.
 
 12. **GET /todas_peliculas**:
    Muestra la lista de todas las películas disponibles.
@@ -117,4 +117,5 @@ Este proyecto es una aplicación web que permite a los usuarios obtener recomend
    Mediante un breve formulario podrás obtener 10 películas basadas en las características elegidas.
 
 14. **GET /detalles_pelicula**:
-   Clickando sobre una pelicula se muestra actores y sipnosis.
+   Clickando sobre una película se muestra actores y sinopsis.
+
