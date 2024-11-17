@@ -53,13 +53,26 @@ Este proyecto es una aplicación web que permite a los usuarios obtener recomend
    Permite a los usuarios no registrados anteriormente registrarse. Sin embargo, si ya estabas registrado solamente hay que iniciar sesión.
 
 2. **Cartelera**:
-   En el apartado 'Todas las películas' aparece una lista de X películas. Además puedes ordenarlas alfabeticamente (A-Z o Z-A). También puedes hacer la búsqueda de una película concreta.
+   En el apartado 'Todas las películas' aparece una lista de todas las películas almacenadas en la base de datos. Además, puedes ordenarlas alfabéticamente (A-Z o Z-A) o por fecha de estreno ascendentemente o descendentemente. También hay un buscador para hacer la búsqueda de una película concreta.
 
-3. **Recomendaciones personalizadas**:
-   En '¿Que te apetece ver hoy?' debes rellenar varios campos (género, tipo de película, actores preferidos, duración preferida y idioma) para así obtener una lista de películas elegidas a tu gusto.
+3. **Recomendaciones**:
+   Esta dividido en dos apartados. En el primero apareceran 15 películas recomendadas en base a las preferencias del usuario (estan en la base de datos almacenadas) y además todas las películas recomendadas ahí seran obtenidas de todas las películas de la base de datos.
+   En el segundo se mostrará un texto generado por ChatGPT, el cual recomendara 3 películas que no pertenecen a la base de datos y estan basadas en las preferencias del usuario. Además muestra algo de información sobre estas.
+   Esta sección solo funcionará si anteriormente el usuario ha realizado bsuquedas teniendo así preferencias almacenadas. De lo contrario. aparecera un mensaje difiendonos que aún no nos conoce lo suficiente como para hacernos recomendaciones sobre las películas.
 
-4. **Recomendaciones**:
-   Después de realizar la primera búsqueda en el apartado '¿Que te apetece ver hoy?' saldrá una lista de películas recomendadas teniendo en cuenta los campos rellenados.
+4. **Recomendaciones personalizadas**:
+   En '¿Que te apetece ver hoy?' debes rellenar varios campos obligatorios (género, tipo de película) además de otros optativos (actores preferidos, duración preferida y idioma) para así obtener una lista de 10 películas ajustadas a tu gusto. Dependiendo de la precisión de la busqueda, te recomendará películas mas exáctas a las características añadidas. 
+   Encima, todas las busquedas realizadas quedaran almacenadas en la base de datos para la utilizacion de futuras recomendaciones.
+
+5. **Breve descripcion**:
+   Independientemente del apartado en el que te encuentres, aparecera una losta de peliculas. Clickando sobre su titulo, se mostrara una pequeña pantalla con un texto generado por ChatGPT que incluye los actores prinicpales y una breve sipnosis de la pelicula seleccionada.
+
+6. **Gestion de preferencias almacenadas y cuenta**:
+   Los usuarios tienen la opcion de borrar todas sus preferencias almacenadas sin eliminar su cuenta.
+   Si el usuario decide eliminar su cuenta, todas las preferencias almacenadas tambien se borrras automaticamente.
+
+7. **Logout de usuarios**:
+   Durate la nevagacion, los usuarios pueden cerrar sesion de su cuenta en cuanto deseen.
 
 
 ## Rutas Principales
@@ -71,22 +84,37 @@ Este proyecto es una aplicación web que permite a los usuarios obtener recomend
    Muestra el campo de iniciar sesión (usuario y contraseña).
 
 3. **POST /login**:
-   Procesa los datos de inicio de sesión.
+   Procesa los datos de inicio de sesión redirigiendo a la pagina de recomendaciones si es exitoso.
 
-4. **GET /registrar**:
+4. **GET /pagina_registro**:
    Muestra el campo de registrarse (usuario, contraseña y confirmar contraseña).
 
 5. **POST /registrar**:
-   Procesa los datos de registro de usuario.
+   Procesa los datos de registro de usuario validando que no exista ya y que las contraseñas coincidan.
 
-6. **POST /logout**:
-   Cierra sesión del usuario.
+6. **GET /perfil**:
+   Muestra la pagina del perfil del usuario autenticado.
 
-7. **POST /recomendadas**:
+7. **POST /eliminar_datos**:
+   Elimina unicamente las preferencias almacenadas del usuario autenticado.
+
+8. **POST /eliminar_usuario**:
+   Elimina la cuenta del usuario y todas las preferencias almacenadas anteriormente.
+
+9. **POST /logout**:
+   Cierra sesión del usuario y redirige a la pagina de login.
+
+10. **GET /recomendadas**:
    Genera recomendaciones de películas basadas en las preferencias del usuario.
 
-8. **POST /todas_peliculas**:
-   Muestra la lista de todas las películas.
+11. **GET /recomendacion_adicional**:
+   Genera recomendaciones adicionales de peliculas en texto basadas en las preferencias del usuario.
 
-9. **POST /que_te_apetece**:
+12. **GET /todas_peliculas**:
+   Muestra la lista de todas las películas disponibles.
+
+13. **GET y POST /que_te_apetece**:
    Mediante un breve formulario podrás obtener 10 películas basadas en las características elegidas.
+
+14. **GET /detalles_pelicula**:
+   Clickando sobre una pelicula se muestra actores y sipnosis.
